@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers;
 
 use crocodicstudio\crudbooster\controllers\CBController;
+use Illuminate\Support\Str;
 
 class AdminVideoController extends CBController {
 
@@ -24,7 +25,14 @@ class AdminVideoController extends CBController {
 		$this->addSelectTable("Anime","id_anime",["table"=>"anime","value_option"=>"id","display_option"=>"judul","sql_condition"=>""]);
 		$this->addDatetime("Created At","created_at")->required(false)->showIndex(false)->showAdd(false)->showEdit(false);
 		$this->addDatetime("Updated At","updated_at")->required(false)->showIndex(false)->showAdd(false)->showEdit(false);
-		
+		$this->hookBeforeInsert(function($data) {
+			$data['judul_alternatif'] = Str::slug($data['judul'],'-');
+			return $data;
+		});
+		$this->hookBeforeUpdate(function($data) {
+			$data['judul_alternatif'] = Str::slug($data['judul'],'-');
+			return $data;
+		});
 
     }
 }

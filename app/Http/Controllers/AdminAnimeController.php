@@ -3,6 +3,7 @@
 use crocodicstudio\crudbooster\controllers\CBController;
 use App\Models\AnimeGenre;
 use App\Models\Genre;
+use Illuminate\Support\Str;
 
 class AdminAnimeController extends CBController {
 
@@ -14,7 +15,6 @@ class AdminAnimeController extends CBController {
         $this->setPageTitle("Anime");
 
         $this->addText("Judul","judul")->strLimit(150)->maxLength(255);
-		$this->addText("Judul Alternatif","judul_alternatif")->showIndex(false)->strLimit(150)->maxLength(255);
 		$this->addNumber("Rating","rating")->required(false)->showAdd(false)->showEdit(false);
 		$this->addNumber("Voter","voter")->required(false)->showAdd(false)->showEdit(false);
 		$this->addSelectOption("Status","status")->options(['ended'=>'Ended','ongoing'=>'Ongoing']);
@@ -49,6 +49,13 @@ class AdminAnimeController extends CBController {
 			}
 			return $genre;
 		});
-
+		$this->hookBeforeInsert(function($data) {
+			$data['judul_alternatif'] = Str::slug($data['judul'],'-');
+			return $data;
+		});
+		$this->hookBeforeUpdate(function($data) {
+			$data['judul_alternatif'] = Str::slug($data['judul'],'-');
+			return $data;
+		});
     }
 }

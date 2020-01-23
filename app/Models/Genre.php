@@ -15,6 +15,7 @@ class Genre extends Model
 	private $nama;
 	private $created_at;
 	private $updated_at;
+	private $nama_alternatif;
 
 
     
@@ -72,6 +73,22 @@ class Genre extends Model
 
 	public function setUpdatedAt($updated_at) {
 		$this->updated_at = $updated_at;
+	}
+
+	public static function findAllByNamaAlternatif($value) {
+		return static::simpleQuery()->where('nama_alternatif',$value)->get();
+	}
+
+	public static function findByNamaAlternatif($value) {
+		return static::findBy('nama_alternatif',$value);
+	}
+
+	public function getNamaAlternatif() {
+		return $this->nama_alternatif;
+	}
+
+	public function setNamaAlternatif($nama_alternatif) {
+		$this->nama_alternatif = $nama_alternatif;
 	}
 
 

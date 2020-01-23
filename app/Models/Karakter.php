@@ -18,6 +18,7 @@ class Karakter extends Model
 	private $created_at;
 	private $updated_at;
 	private $voter;
+	private $nama_alternatif;
 
 
     
@@ -123,6 +124,22 @@ class Karakter extends Model
 
 	public function setVoter($voter) {
 		$this->voter = $voter;
+	}
+
+	public static function findAllByNamaAlternatif($value) {
+		return static::simpleQuery()->where('nama_alternatif',$value)->get();
+	}
+
+	public static function findByNamaAlternatif($value) {
+		return static::findBy('nama_alternatif',$value);
+	}
+
+	public function getNamaAlternatif() {
+		return $this->nama_alternatif;
+	}
+
+	public function setNamaAlternatif($nama_alternatif) {
+		$this->nama_alternatif = $nama_alternatif;
 	}
 
 

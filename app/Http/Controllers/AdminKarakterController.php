@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers;
 
 use crocodicstudio\crudbooster\controllers\CBController;
+use Illuminate\Support\Str;
 
 class AdminKarakterController extends CBController {
 
@@ -23,6 +24,13 @@ class AdminKarakterController extends CBController {
 			  "Nama Karakter"=> $row->nama
 			];
 		});
-
+		$this->hookBeforeInsert(function($data) {
+			$data['nama_alternatif'] = Str::slug($data['nama'],'-');
+			return $data;
+		});
+		$this->hookBeforeUpdate(function($data) {
+			$data['nama_alternatif'] = Str::slug($data['nama'],'-');
+			return $data;
+		});
     }
 }

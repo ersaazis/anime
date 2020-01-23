@@ -25,6 +25,7 @@ class Video extends Model
 	private $id_anime;
 	private $created_at;
 	private $updated_at;
+	private $judul_alternatif;
 
 
     
@@ -241,6 +242,22 @@ class Video extends Model
 
 	public function setUpdatedAt($updated_at) {
 		$this->updated_at = $updated_at;
+	}
+
+	public static function findAllByJudulAlternatif($value) {
+		return static::simpleQuery()->where('judul_alternatif',$value)->get();
+	}
+
+	public static function findByJudulAlternatif($value) {
+		return static::findBy('judul_alternatif',$value);
+	}
+
+	public function getJudulAlternatif() {
+		return $this->judul_alternatif;
+	}
+
+	public function setJudulAlternatif($judul_alternatif) {
+		$this->judul_alternatif = $judul_alternatif;
 	}
 
 
