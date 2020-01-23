@@ -18,8 +18,6 @@ class Karakter extends Migration
             $table->string('nama');
             $table->string('foto');
             $table->text('deskripsi');
-            $table->bigInteger('id_anime')->unsigned();
-            $table->foreign('id_anime')->references('id')->on('anime')->onDelete('cascade');
             $table->timestamps();
         });
     }

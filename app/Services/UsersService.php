@@ -2,9 +2,9 @@
 namespace App\Services;
 
 use DB;
-use App\Repositories\MusimRepository;
+use App\Repositories\UsersRepository;
 
-class MusimService
+class UsersService
 {
     // TODO : Make you own service method
 

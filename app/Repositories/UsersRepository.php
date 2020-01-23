@@ -2,9 +2,9 @@
 namespace App\Repositories;
 
 use DB;
-use App\Models\Musim;
+use App\Models\Users;
 
-class MusimRepository extends Musim
+class UsersRepository extends Users
 {
     // TODO : Make you own query methods
 

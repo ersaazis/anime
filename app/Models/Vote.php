@@ -12,7 +12,6 @@ class Vote extends Model
 
     
 	private $id;
-	private $id_musim;
 	private $id_users;
 	private $id_karakter;
 	private $id_anime;
@@ -29,31 +28,15 @@ class Vote extends Model
 		$this->id = $id;
 	}
 
-	public static function findAllByIdMusim($value) {
-		return static::simpleQuery()->where('id_musim',$value)->get();
-	}
-
-	/**
-	* @return Musim
-	*/
-	public function getIdMusim() {
-		return Musim::findById($this->id_musim);
-	}
-
-	public function setIdMusim($id_musim) {
-		$this->id_musim = $id_musim;
-	}
-
 	public static function findAllByIdUsers($value) {
 		return static::simpleQuery()->where('id_users',$value)->get();
 	}
 
-	public static function findByIdUsers($value) {
-		return static::findBy('id_users',$value);
-	}
-
+	/**
+	* @return Users
+	*/
 	public function getIdUsers() {
-		return $this->id_users;
+		return Users::findById($this->id_users);
 	}
 
 	public function setIdUsers($id_users) {

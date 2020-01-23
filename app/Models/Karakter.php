@@ -15,9 +15,9 @@ class Karakter extends Model
 	private $nama;
 	private $foto;
 	private $deskripsi;
-	private $id_anime;
 	private $created_at;
 	private $updated_at;
+	private $voter;
 
 
     
@@ -77,21 +77,6 @@ class Karakter extends Model
 		$this->deskripsi = $deskripsi;
 	}
 
-	public static function findAllByIdAnime($value) {
-		return static::simpleQuery()->where('id_anime',$value)->get();
-	}
-
-	/**
-	* @return Anime
-	*/
-	public function getIdAnime() {
-		return Anime::findById($this->id_anime);
-	}
-
-	public function setIdAnime($id_anime) {
-		$this->id_anime = $id_anime;
-	}
-
 	public static function findAllByCreatedAt($value) {
 		return static::simpleQuery()->where('created_at',$value)->get();
 	}
@@ -122,6 +107,22 @@ class Karakter extends Model
 
 	public function setUpdatedAt($updated_at) {
 		$this->updated_at = $updated_at;
+	}
+
+	public static function findAllByVoter($value) {
+		return static::simpleQuery()->where('voter',$value)->get();
+	}
+
+	public static function findByVoter($value) {
+		return static::findBy('voter',$value);
+	}
+
+	public function getVoter() {
+		return $this->voter;
+	}
+
+	public function setVoter($voter) {
+		$this->voter = $voter;
 	}
 
 

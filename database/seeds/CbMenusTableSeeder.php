@@ -41,17 +41,6 @@ class CbMenusTableSeeder extends Seeder
             ),
             2 => 
             array (
-                'id' => 4,
-                'name' => 'Karakter',
-                'icon' => NULL,
-                'path' => NULL,
-                'type' => 'module',
-                'sort_number' => 5,
-                'cb_modules_id' => 4,
-                'parent_cb_menus_id' => NULL,
-            ),
-            3 => 
-            array (
                 'id' => 5,
                 'name' => 'Musim',
                 'icon' => NULL,
@@ -61,7 +50,7 @@ class CbMenusTableSeeder extends Seeder
                 'cb_modules_id' => 5,
                 'parent_cb_menus_id' => NULL,
             ),
-            4 => 
+            3 => 
             array (
                 'id' => 6,
                 'name' => 'Pengumuman',
@@ -72,7 +61,7 @@ class CbMenusTableSeeder extends Seeder
                 'cb_modules_id' => 6,
                 'parent_cb_menus_id' => NULL,
             ),
-            5 => 
+            4 => 
             array (
                 'id' => 7,
                 'name' => 'Video',
@@ -81,6 +70,17 @@ class CbMenusTableSeeder extends Seeder
                 'type' => 'module',
                 'sort_number' => 4,
                 'cb_modules_id' => 7,
+                'parent_cb_menus_id' => NULL,
+            ),
+            5 => 
+            array (
+                'id' => 8,
+                'name' => 'Karakter',
+                'icon' => NULL,
+                'path' => NULL,
+                'type' => 'module',
+                'sort_number' => 0,
+                'cb_modules_id' => 8,
                 'parent_cb_menus_id' => NULL,
             ),
         ));

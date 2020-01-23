@@ -1,6 +1,8 @@
 <?php namespace App\Http\Controllers;
 
 use crocodicstudio\crudbooster\controllers\CBController;
+use App\Models\AnimeGenre;
+use App\Models\Genre;
 
 class AdminAnimeController extends CBController {
 
@@ -12,7 +14,7 @@ class AdminAnimeController extends CBController {
         $this->setPageTitle("Anime");
 
         $this->addText("Judul","judul")->strLimit(150)->maxLength(255);
-		$this->addText("Judul Alternatif","judul_alternatif")->strLimit(150)->maxLength(255);
+		$this->addText("Judul Alternatif","judul_alternatif")->showIndex(false)->strLimit(150)->maxLength(255);
 		$this->addNumber("Rating","rating")->required(false)->showAdd(false)->showEdit(false);
 		$this->addNumber("Voter","voter")->required(false)->showAdd(false)->showEdit(false);
 		$this->addSelectOption("Status","status")->options(['ended'=>'Ended','ongoing'=>'Ongoing']);
@@ -33,11 +35,19 @@ class AdminAnimeController extends CBController {
 			  "Judul"=> $row->judul
 			];
 		});
-		$this->addSubModule("Karakter", AdminKarakterController::class, "id_anime", function ($row) {
+		$this->addSubModule("Karakter", AdminKarakterAnimeController::class, "id_anime", function ($row) {
 			return [
 			  "ID"=> $row->primary_key, // You can get the id of table by using primary_key object
 			  "Judul"=> $row->judul
 			];
+		});
+		$this->addText("Genre",'id','id')->required(false)->showAdd(false)->showEdit(false)->indexDisplayTransform(function($row) {
+			$genres=AnimeGenre::findAllByIdAnime($row);
+			$genre=null;
+			foreach($genres as $g){
+				$genre.=Genre::findById($g->id_genre)->getNama().",";
+			}
+			return $genre;
 		});
 
     }

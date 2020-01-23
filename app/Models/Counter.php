@@ -83,6 +83,10 @@ class Counter extends Model
 		return static::simpleQuery()->where('id_anime',$value)->get();
 	}
 
+	public static function findByIdAnime($value) {
+		return static::findBy('id_anime',$value);
+	}
+
 	/**
 	* @return Anime
 	*/
