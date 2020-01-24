@@ -17,7 +17,7 @@ class Anime extends Migration
             $table->bigIncrements('id');
             $table->string('judul');
             $table->string('judul_alternatif');
-            $table->integer('rating')->nullable();
+            $table->float('rating', 8, 2)->nullable();
             $table->integer('voter')->nullable();
             $table->string('status');
             $table->integer('total_episode')->nullable();
