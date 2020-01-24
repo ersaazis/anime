@@ -30,8 +30,8 @@ class UsersTableSeeder extends Seeder
                 'photo' => NULL,
                 'cb_roles_id' => 1,
                 'ip_address' => '127.0.0.1',
-            'user_agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36',
-                'login_at' => '2020-01-23 18:19:15',
+            'user_agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:72.0) Gecko/20100101 Firefox/72.0',
+                'login_at' => '2020-01-24 16:05:08',
             ),
         ));
         

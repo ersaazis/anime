@@ -18,9 +18,36 @@ use Illuminate\Support\Str;
 
 class NontonAnimeController extends Controller
 {
-    public function index(){
+    private $data=array();
+    public function __construct(){
         $pengumuman=DB::table('pengumuman')->where('tanggal_expire','>=',date('Y-m-d'))->get();
-        print_r($pengumuman);
+        $hari=array(
+            1=>'senin',
+            2=>'selasa',
+            3=>'rabu',
+            4=>'kamis',
+            5=>'jumat',
+            6=>'sabtu',
+            7=>'minggu',
+        );
+        $hariN = idate('w', time());
+        $rilisHariIni=Anime::findAllByHariTayang($hari[$hariN]);
+        $tags=Genre::all();
+        $animeFavorit=DB::table('anime')->orderBy('voter','DESC')->limit(8)->get();
+        $karakterFavorit=DB::table('karakter')->orderBy('voter','DESC')->limit(8)->get();
+
+        $this->data['pengumuman']=$pengumuman;
+        $this->data['tags']=$tags;
+        $this->data['animeFavorit']=$animeFavorit;
+        $this->data['karakterFavorit']=$karakterFavorit;
+        $this->data['animeTayang']=$rilisHariIni;
+    }
+    public function index(){
+        return view('index',$this->data);
+    }
+    public function semuaAnime(){
+        $anime=Anime::all();
+        print_r($anime);
     }
     public function anime($anime){
         $anime=Anime::findByJudulAlternatif($anime);

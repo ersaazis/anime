@@ -160,6 +160,39 @@ class CbRolePrivilegesTableSeeder extends Seeder
                 'can_update' => 1,
                 'can_delete' => 1,
             ),
+            13 => 
+            array (
+                'id' => 14,
+                'cb_roles_id' => 1,
+                'cb_menus_id' => 10,
+                'can_browse' => 1,
+                'can_create' => 1,
+                'can_read' => 1,
+                'can_update' => 1,
+                'can_delete' => 1,
+            ),
+            14 => 
+            array (
+                'id' => 15,
+                'cb_roles_id' => 2,
+                'cb_menus_id' => 8,
+                'can_browse' => 0,
+                'can_create' => 0,
+                'can_read' => 0,
+                'can_update' => 0,
+                'can_delete' => 0,
+            ),
+            15 => 
+            array (
+                'id' => 16,
+                'cb_roles_id' => 2,
+                'cb_menus_id' => 10,
+                'can_browse' => 1,
+                'can_create' => 1,
+                'can_read' => 1,
+                'can_update' => 1,
+                'can_delete' => 1,
+            ),
         ));
         
         
