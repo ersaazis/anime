@@ -30,7 +30,7 @@ class NontonAnimeController extends Controller
             6=>'sabtu',
             7=>'minggu',
         );
-        $hariN = idate('w', time());
+        $hariN = date('w');
         $rilisHariIni=Anime::findAllByHariTayang($hari[$hariN]);
         $tags=Genre::all();
         $animeFavorit=DB::table('anime')->orderBy('voter','DESC')->limit(8)->get();
@@ -41,6 +41,7 @@ class NontonAnimeController extends Controller
         $this->data['animeFavorit']=$animeFavorit;
         $this->data['karakterFavorit']=$karakterFavorit;
         $this->data['animeTayang']=$rilisHariIni;
+        // dd($rilisHariIni);
     }
     public function index(){
         return view('index',$this->data);
