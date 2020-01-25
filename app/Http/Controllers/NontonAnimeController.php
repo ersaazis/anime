@@ -333,4 +333,12 @@ class NontonAnimeController extends Controller
             break;
         }
     }
+    public function lite(){
+        $value = session('lite_mode',false);
+        if($value)
+            session(['lite_mode' => false]);
+        else
+            session(['lite_mode' => true]);
+        return redirect('/');
+    }
 }

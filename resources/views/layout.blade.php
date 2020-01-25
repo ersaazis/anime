@@ -24,11 +24,16 @@
                     <li class="nav-item" role="presentation"><a class="nav-link" href="{{ route('JadwalRilis') }}">Jadwal Rilis</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" data-toggle="modal" data-target="#cariAnime" href="#cariAnime">Cari Anime</a></li>
                     @if(!cb()->session()->id())
+                    <?php session(['lite_mode' => false]); ?>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="{{ url(cb()->getAdminPath().'/login') }}">Login</a></li>
                     @else
                     <li class="nav-item" role="presentation"><a class="nav-link" href="{{ url(cb()->getAdminPath()) }}">Member</a></li>
                     @endif
-                    <li class="nav-item" role="presentation"><a class="nav-link btn btn-primary text-light" href="{{ url('/') }}" data-toggle="tooltip" data-placement="bottom" data-html="true" title="Mode Hemat Kuota <em>(Tanpa Gambar)</em>">Lite Mode</a></li>
+                    @if (session('lite_mode',false))
+                        <li class="nav-item" role="presentation"><a class="nav-link btn btn-primary text-light" href="{{ route('LiteMode') }}" data-toggle="tooltip" data-placement="bottom" data-html="true" title="Kembali Kesemula <em>(Dengan Gambar)</em>">Default Mode</a></li>
+                    @else
+                        <li class="nav-item" role="presentation"><a class="nav-link btn btn-primary text-light" href="{{ route('LiteMode') }}" data-toggle="tooltip" data-placement="bottom" data-html="true" title="Mode Hemat Kuota <em>(Tanpa Gambar)</em>">Lite Mode</a></li>
+                    @endif
                 </ul>
             </div>
         </div>

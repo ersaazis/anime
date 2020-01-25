@@ -33,7 +33,15 @@
                     data-placement="bottom"
                     href="javascript:void(0);"
                 >
+                @if (!session('lite_mode',false))
                 <img src="{{url($item->foto)}}" width="100%" />
+                @else
+                <div class="card h-100">
+                    <div class="card-body text-center text-dark">
+                        {{$item->judul_anime}} - {{$item->judul}}
+                    </div>
+                </div>
+                @endif
                 </a>
                 @endif
             @endforeach
@@ -69,7 +77,15 @@
                     data-placement="bottom"
                     href="javascript:void(0);"
                 >
+                @if (!session('lite_mode',false))
                 <img src="{{url($item->foto)}}" width="100%" />
+                @else
+                <div class="card h-100">
+                    <div class="card-body text-center text-dark">
+                        {{$item->judul}}
+                    </div>
+                </div>
+                @endif
                 </a>
                 @endif
             @endforeach
@@ -105,7 +121,15 @@
                     data-placement="bottom"
                     href="javascript:void(0);"
                 >
+                @if (!session('lite_mode',false))
                 <img src="{{url($item->foto)}}" width="100%" />
+                @else
+                <div class="card h-100">
+                    <div class="card-body text-center text-dark">
+                        {{$item->judul_anime}} - {{$item->judul}}
+                    </div>
+                </div>
+                @endif
                 </a>
             @endforeach
         </div>
@@ -148,7 +172,15 @@
                         data-placement="bottom"
                         href="javascript:void(0);"
                     >
+                    @if (!session('lite_mode',false))
                     <img src="{{url($item->foto)}}" width="100%" />
+                    @else
+                    <div class="card h-100">
+                        <div class="card-body text-center text-dark">
+                            {{$item->judul_anime}} - {{$item->judul}}
+                        </div>
+                    </div>
+                    @endif
                     </a>
                 @endforeach
             </div>
@@ -192,7 +224,15 @@
                         data-placement="bottom"
                         href="javascript:void(0);"
                     >
+                    @if (!session('lite_mode',false))
                     <img src="{{url($item->foto)}}" width="100%" />
+                    @else
+                    <div class="card h-100">
+                        <div class="card-body text-center text-dark">
+                            {{$item->judul}}
+                        </div>
+                    </div>
+                    @endif
                     </a>
                 @endforeach
             </div>

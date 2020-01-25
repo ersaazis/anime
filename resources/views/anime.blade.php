@@ -6,9 +6,11 @@
         <div class="card mt-2">
             <div class="card-body">
                 <div class="row">
+                    @if (!session('lite_mode',false))
                     <div class="col-12 col-md-3">
                         <img src="{{url($anime->foto)}}" width="100%" />
                     </div>
+                    @endif
                     <div class="col-12 col-md-9 mt-2">
                         <h3>{{$anime->judul}}</h3>
                         {!! $anime->deskripsi !!}
@@ -68,7 +70,15 @@
                         data-placement="bottom"
                         href="javascript:void(0);"
                         >
+                        @if (!session('lite_mode',false))
                         <img src="{{url($item->foto)}}" width="100%" />
+                        @else
+                        <div class="card h-100">
+                            <div class="card-body text-center text-dark">
+                                {{$item->nama}}
+                            </div>
+                        </div>
+                        @endif
                         </a>
                     @endforeach
                 </div>
