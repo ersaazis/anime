@@ -1,28 +1,36 @@
 <?php
-    $i=$j=$k=1;
+    $x=$j=$k=1;
 ?>
 @extends('layout')
 @section('content')
 <div class="row no-gutters">
     @foreach ($animeTayang as $item)
-        @if($i++ <= 6)
+        @if($x++ <= 6)
         <a class="col-md-2 col-4" 
             data-toggle="popover" 
             data-trigger="focus"
             data-html="true"
             title="<a href='{{route('Anime',['anime'=>$item->judul_alternatif])}}' class='text-dark'>{{$item->judul}} <i class='fa fa-external-link'></i></a>" 
             data-content="
-            <b>Rating</b> : {{$item->rating}} <br>
-            <b>Voter</b> : {{$item->voter}} <br>
+            <b>Rating</b> :
+                @for ($i = 1; $i <= 5; $i++)
+                    @if(cb()->session()->id()) <a class='rating text-dark' href='#{{$item->id}}-{{$i}}'> @endif <span class='fa fa-star 
+                    @if ($item->rating >= $i)
+                        stared
+                    @endif
+                    '></span>@if(cb()->session()->id()) </a> @endif
+                @endfor
+            <br>
+            <b>Voter</b> : {{($item->voter)?$item->voter:0}} @if(cb()->session()->id()) <a class='vote badge badge-secondary m-1' href='#a-{{$item->id}}'>Vote</a> @endif<br>
             <b>Total Episode</b> : {{$item->total_episode}} <br>
-            <b>Status</b> : {{$item->status}} <br>
-            <b>Hari Tayang</b> : {{$item->hari_tayang}} <br>
+            <b>Status</b> : {{ucwords($item->status)}} <br>
+            <b>Hari Tayang</b> : {{ucwords($item->hari_tayang)}} <br>
             "
             data-placement="bottom"
             href="javascript:void(0);"
         >
             {{-- <a href="{{route('Anime',['anime'=>$item->judul_alternatif])}}"> --}}
-                <img src="{{$item->foto}}" width="100%" />
+                <img src="{{url($item->foto)}}" width="100%" />
             {{-- </a> --}}
         </a>
         @endif
@@ -54,8 +62,16 @@
                                 data-html="true"
                                 title="<a href='{{route('Anime',['anime'=>$item->judul_alternatif])}}' class='text-dark'>{{$item->judul}} <i class='fa fa-external-link'></i></a>" 
                                 data-content="
-                                <b>Rating</b> : {{$item->rating}} <br>
-                                <b>Voter</b> : {{$item->voter}} <br>
+                                <b>Rating</b> :
+                                    @for ($i = 1; $i <= 5; $i++)
+                                        @if(cb()->session()->id()) <a class='rating text-dark' href='#{{$item->id}}-{{$i}}'> @endif <span class='fa fa-star 
+                                        @if ($item->rating >= $i)
+                                            stared
+                                        @endif
+                                        '></span></a>
+                                    @endfor
+                                <br>
+                                <b>Voter</b> : {{($item->voter)?$item->voter:0}} @if(cb()->session()->id()) <a class='vote badge badge-secondary m-1' href='#a-{{$item->id}}'>Vote</a> @endif <br>
                                 <b>Total Episode</b> : {{$item->total_episode}} <br>
                                 <b>Status</b> : {{$item->status}} <br>
                                 <b>Hari Tayang</b> : {{$item->hari_tayang}} <br>
@@ -63,7 +79,7 @@
                                 data-placement="bottom"
                                 href="javascript:void(0);"
                             >
-                            <img src="{{$item->foto}}" width="100%" />
+                            <img src="{{url($item->foto)}}" width="100%" />
                             </a>
                         @endif
                     @endforeach
@@ -82,12 +98,12 @@
                         data-html="true"
                         title="<a href='{{route('KarakterAnime',['karakter'=>$item->nama_alternatif])}}' class='text-dark'>{{$item->nama}} <i class='fa fa-external-link'></i></a>" 
                         data-content="
-                        <b>Voter</b> : {{$item->voter}}
+                        <b>Voter</b> : {{($item->voter)?$item->voter:0}} @if(cb()->session()->id()) <a class='vote badge badge-secondary m-1' href='#k-{{$item->id}}'>Vote</a> @endif
                         "
                         data-placement="bottom"
                         href="javascript:void(0);"
                         >
-                        <img src="{{$item->foto}}" width="100%" />
+                        <img src="{{url($item->foto)}}" width="100%" />
                         </a>
                         @endif
                     @endforeach
@@ -115,8 +131,16 @@
                         data-html="true"
                         title="<a href='{{route('Anime',['anime'=>$item->judul_alternatif])}}' class='text-dark'>{{$item->judul}} <i class='fa fa-external-link'></i></a>" 
                         data-content="
-                        <b>Rating</b> : {{$item->rating}} <br>
-                        <b>Voter</b> : {{$item->voter}} <br>
+                        <b>Rating</b> :
+                            @for ($i = 1; $i <= 5; $i++)
+                                @if(cb()->session()->id()) <a class='rating text-dark' href='#{{$item->id}}-{{$i}}'> @endif <span class='fa fa-star 
+                                @if ($item->rating >= $i)
+                                    stared
+                                @endif
+                                '></span></a>
+                            @endfor
+                        <br>
+                        <b>Voter</b> : {{($item->voter)?$item->voter:0}} @if(cb()->session()->id()) <a class='vote badge badge-secondary m-1' href='#a-{{$item->id}}'>Vote</a> @endif <br>
                         <b>Total Episode</b> : {{$item->total_episode}} <br>
                         <b>Status</b> : {{$item->status}} <br>
                         <b>Hari Tayang</b> : {{$item->hari_tayang}} <br>
@@ -124,7 +148,7 @@
                         data-placement="bottom"
                         href="javascript:void(0);"
                     >        
-                    <img src="{{$item->foto}}" width="100%" />
+                    <img src="{{url($item->foto)}}" width="100%" />
                     </a>
                 @endforeach
             </div>
@@ -151,8 +175,16 @@
                             data-html="true"
                             title="<a href='{{route('Anime',['anime'=>$item->judul_alternatif])}}' class='text-dark'>{{$item->judul}} <i class='fa fa-external-link'></i></a>" 
                             data-content="
-                            <b>Rating</b> : {{$item->rating}} <br>
-                            <b>Voter</b> : {{$item->voter}} <br>
+                            <b>Rating</b> :
+                                @for ($i = 1; $i <= 5; $i++)
+                                    @if(cb()->session()->id()) <a class='rating text-dark' href='#{{$item->id}}-{{$i}}'> @endif <span class='fa fa-star 
+                                    @if ($item->rating >= $i)
+                                        stared
+                                    @endif
+                                    '></span></a>
+                                @endfor
+                            <br>
+                            <b>Voter</b> : {{($item->voter)?$item->voter:0}} @if(cb()->session()->id()) <a class='vote badge badge-secondary m-1' href='#a-{{$item->id}}'>Vote</a> @endif <br>
                             <b>Total Episode</b> : {{$item->total_episode}} <br>
                             <b>Status</b> : {{$item->status}} <br>
                             <b>Hari Tayang</b> : {{$item->hari_tayang}} <br>
@@ -160,7 +192,7 @@
                             data-placement="bottom"
                             href="javascript:void(0);"
                         >                
-                        <img src="{{$item->foto}}" width="100%" />
+                        <img src="{{url($item->foto)}}" width="100%" />
                         </a>
                 @endforeach
             </div>
@@ -187,12 +219,12 @@
                     data-html="true"
                     title="<a href='{{route('KarakterAnime',['karakter'=>$item->nama_alternatif])}}' class='text-dark'>{{$item->nama}} <i class='fa fa-external-link'></i></a>" 
                     data-content="
-                    <b>Voter</b> : {{$item->voter}}
+                    <b>Voter</b> : {{($item->voter)?$item->voter:0}} @if(cb()->session()->id()) <a class='vote badge badge-secondary m-1' href='#k-{{$item->id}}'>Vote</a> @endif
                     "
                     data-placement="bottom"
                     href="javascript:void(0);"
                     >
-                    <img src="{{$item->foto}}" width="100%" />
+                    <img src="{{url($item->foto)}}" width="100%" />
                     </a>
                 @endforeach
             </div>

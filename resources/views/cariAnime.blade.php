@@ -1,28 +1,27 @@
 @extends('main')
-@section('title','Semua Video')
+@section('title','Hasil Pencarian Untuk '.$cari)
 @section('main')
 <div class="card">
     <div class="card-body">
-        <h4 class="card-title">Semua Video</h4>
+        <h4 class="card-title">Hasil Pencarian Untuk <b>{{$cari}}</b></h4>
         <div class="row">
-            @foreach ($video as $item)
+            @foreach ($anime as $item)
                 <a class="col-md-3 col-6 mt-3" 
                     data-toggle="popover" 
                     data-trigger="focus"
                     data-html="true"
-                    title="<a href='{{route('VideoAnime',['anime'=>$item->judul_alternatif_anime,'judul'=>$item->judul_alternatif])}}' class='text-dark'>{{$item->judul}} <i class='fa fa-external-link'></i></a>" 
+                    title="<a href='{{route('Anime',['anime'=>$item->judul_alternatif])}}' class='text-dark'>{{$item->judul}} <i class='fa fa-external-link'></i></a>" 
                     data-content="
-                    <b>Anime</b> : {{$item->judul_anime}} <br>
                     <b>Rating</b> :
                         @for ($i = 1; $i <= 5; $i++)
-                            @if(cb()->session()->id()) <a class='rating text-dark' href='#{{$item->id_anime_id}}-{{$i}}'> @endif <span class='fa fa-star 
+                            @if(cb()->session()->id()) <a class='rating text-dark' href='#{{$item->id}}-{{$i}}'> @endif <span class='fa fa-star 
                             @if ($item->rating >= $i)
                                 stared
                             @endif
                             '></span></a>
                         @endfor
                     <br>
-                    <b>Voter</b> : {{($item->voter)?$item->voter:0}} @if(cb()->session()->id()) <a class='vote badge badge-secondary m-1' href='#a-{{$item->id_anime_id}}'>Vote</a> @endif <br>
+                    <b>Voter</b> : {{($item->voter)?$item->voter:0}} @if(cb()->session()->id()) <a class='vote badge badge-secondary m-1' href='#a-{{$item->id}}'>Vote</a> @endif <br>
                     <b>Total Episode</b> : {{$item->total_episode}} <br>
                     <b>Status</b> : {{$item->status}} <br>
                     <b>Hari Tayang</b> : {{$item->hari_tayang}} <br>
@@ -36,7 +35,7 @@
         </div>
         <div class="row mt-2 float-right">
             <div class="col">
-                {{ $video->links() }}
+                {{ $anime->appends(['cari' => $cari])->links() }}
             </div>
         </div>
     </div>

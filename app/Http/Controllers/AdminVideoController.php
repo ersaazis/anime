@@ -16,7 +16,7 @@ class AdminVideoController extends CBController {
 		$this->addSelectOption("Tipe","tipe")->options(['episode'=>'Episode','movie'=>'Movie']);
 		$this->addNumber("Episode","episode");
 		$this->addImage("Foto","foto")->encrypt(true);
-		$this->addWysiwyg("Deskripsi","deskripsi")->strLimit(150);
+		$this->addWysiwyg("Deskripsi","deskripsi")->showIndex(false);
 		$this->addText("Server1","server1")->showIndex(false)->strLimit(150)->maxLength(255);
 		$this->addText("Server2","server2")->showIndex(false)->required(false)->strLimit(150)->maxLength(255);
 		$this->addText("Server3","server3")->showIndex(false)->required(false)->strLimit(150)->maxLength(255);

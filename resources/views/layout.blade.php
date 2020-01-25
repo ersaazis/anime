@@ -19,21 +19,27 @@
             <div class="collapse navbar-collapse"
                 id="navcol-1">
                 <ul class="nav navbar-nav ml-auto">
-                        <li class="nav-item" role="presentation"><a class="nav-link" href="{{ url('/') }}">Home</a></li>
-                        <li class="nav-item" role="presentation"><a class="nav-link" href="{{ route('SemuaAnime') }}">Anime</a></li>
-                        <li class="nav-item" role="presentation"><a class="nav-link" href="{{ route('SemuaVideo') }}">Video</a></li>
-                        <li class="nav-item" role="presentation"><a class="nav-link" data-toggle="modal" data-target="#cariAnime" href="#cariAnime">Cari Anime</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="{{ route('SemuaAnime') }}">Anime</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="{{ route('SemuaVideo') }}">Video</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="{{ route('JadwalRilis') }}">Jadwal Rilis</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" data-toggle="modal" data-target="#cariAnime" href="#cariAnime">Cari Anime</a></li>
                     @if(!cb()->session()->id())
                     <li class="nav-item" role="presentation"><a class="nav-link" href="{{ url(cb()->getAdminPath().'/login') }}">Login</a></li>
                     @else
                     <li class="nav-item" role="presentation"><a class="nav-link" href="{{ url(cb()->getAdminPath()) }}">Member</a></li>
                     @endif
+                    <li class="nav-item" role="presentation"><a class="nav-link btn btn-primary text-light" href="{{ url('/') }}" data-toggle="tooltip" data-placement="bottom" data-html="true" title="Mode Hemat Kuota <em>(Tanpa Gambar)</em>">Lite Mode</a></li>
                 </ul>
             </div>
         </div>
     </nav>
     <main class="clean-block clean-form dark pt-5">
         <div class="container">
+            @foreach ($pengumuman as $item)
+            <div class="alert alert-primary" role="alert">
+                <b>{{$item->judul}}</b>, {{ $item->isi }}
+            </div>
+            @endforeach
             @yield('content')
         </div>
     </main>
@@ -55,8 +61,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{route('CariAnime')}}" method="POST">
-                    @csrf
+                <form action="{{route('CariAnime')}}" method="GET">
                     <div class="input-group mb-3">
                         <input type="text" name="cari" class="form-control" placeholder="Judul Anime">
                         <div class="input-group-append">
@@ -73,7 +78,24 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.jquery.min.js"></script>
     <script src="{{ url('/') }}/assets/js/script.min.js"></script>
-    
+    <script>
+    $(document).on('click', '.rating', function(event){
+        var cek = $(event.currentTarget).attr('href');
+        cek = cek.replace('#','')
+        cek = cek.split('-')
+        $.get( "{{route('RatingAnime',['rating'=>'','id_anime'=>''])}}/"+cek[0]+"/"+cek[1], function( data ) {
+            alert('Berhasil Memberikan Rating');
+        });
+    });
+    $(document).on('click', '.vote', function(event){
+        var cek = $(event.currentTarget).attr('href');
+        cek = cek.replace('#','')
+        cek = cek.split('-')
+        $.get( "{{route('VoteAnime',['tipe'=>'','id_anime'=>''])}}/"+cek[0]+"/"+cek[1], function( data ) {
+            alert('Berhasil '+data);
+        });
+    });
+    </script>
 </body>
 
 </html>

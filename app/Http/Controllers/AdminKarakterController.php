@@ -15,7 +15,7 @@ class AdminKarakterController extends CBController {
         $this->addText("Nama","nama")->strLimit(150)->maxLength(255);
 		$this->addImage("Foto","foto")->encrypt(true);
 		$this->addNumber("Voter","voter")->required(false)->showAdd(false)->showEdit(false);
-		$this->addWysiwyg("Deskripsi","deskripsi")->showIndex(false)->strLimit(150);
+		$this->addWysiwyg("Deskripsi","deskripsi")->showIndex(false);
 		$this->addDatetime("Created At","created_at")->required(false)->showIndex(false)->showAdd(false)->showEdit(false);
 		$this->addDatetime("Updated At","updated_at")->required(false)->showIndex(false)->showAdd(false)->showEdit(false);
         $this->addSubModule("Anime", AdminKarakterAnimeController::class, "id_karakter", function ($row) {

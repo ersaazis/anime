@@ -14,7 +14,8 @@ class AdminAnimeController extends CBController {
         $this->setPermalink("anime");
         $this->setPageTitle("Anime");
 
-        $this->addText("Judul","judul")->strLimit(150)->maxLength(255);
+		$this->addText("Judul","judul")->strLimit(150)->maxLength(255);
+		$this->addWysiwyg("Deskripsi","deskripsi")->showIndex(false);
 		$this->addNumber("Rating","rating")->required(false)->showAdd(false)->showEdit(false);
 		$this->addNumber("Voter","voter")->required(false)->showAdd(false)->showEdit(false);
 		$this->addSelectOption("Status","status")->options(['ended'=>'Ended','ongoing'=>'Ongoing']);

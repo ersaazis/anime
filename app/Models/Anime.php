@@ -22,6 +22,7 @@ class Anime extends Model
 	private $foto;
 	private $created_at;
 	private $updated_at;
+	private $deskripsi;
 
 
     
@@ -191,6 +192,22 @@ class Anime extends Model
 
 	public function setUpdatedAt($updated_at) {
 		$this->updated_at = $updated_at;
+	}
+
+	public static function findAllByDeskripsi($value) {
+		return static::simpleQuery()->where('deskripsi',$value)->get();
+	}
+
+	public static function findByDeskripsi($value) {
+		return static::findBy('deskripsi',$value);
+	}
+
+	public function getDeskripsi() {
+		return $this->deskripsi;
+	}
+
+	public function setDeskripsi($deskripsi) {
+		$this->deskripsi = $deskripsi;
 	}
 
 

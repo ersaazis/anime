@@ -49,6 +49,7 @@ class NontonAnimeController extends Controller
             ->select(
                 'video.*',
                 'anime.judul as judul_anime',
+                'anime.id as id_anime_id',
                 'anime.judul_alternatif as judul_alternatif_anime',
                 'anime.rating',
                 'anime.voter',
@@ -79,6 +80,7 @@ class NontonAnimeController extends Controller
             ->select(
                 'video.*',
                 'anime.judul as judul_anime',
+                'anime.id as id_anime_id',
                 'anime.judul_alternatif as judul_alternatif_anime',
                 'anime.rating',
                 'anime.voter',
@@ -105,6 +107,7 @@ class NontonAnimeController extends Controller
         ->select(
             'video.*',
             'anime.judul as judul_anime',
+            'anime.id as id_anime_id',
             'anime.judul_alternatif as judul_alternatif_anime',
             'anime.rating',
             'anime.voter',
@@ -118,49 +121,132 @@ class NontonAnimeController extends Controller
         return view('semuaVideo',$this->data);
     }
     public function anime($anime){
-        $anime=Anime::findByJudulAlternatif($anime);
-        $video=Video::findAllByIdAnime($anime->getId());
-        if(!$anime->getId())
+        $anime=DB::table('anime')->where('judul_alternatif',$anime)->first();
+        $video['episode']=DB::table('video')->where('tipe','episode')->where('id_anime',$anime->id)->get();
+        $video['movie']=DB::table('video')->where('tipe','movie')->where('id_anime',$anime->id)->get();
+        $karakterAnime=DB::table('karakter_anime')
+            ->join('karakter','karakter_anime.id_karakter','=','karakter.id')
+            ->where('id_anime',$anime->id)
+            ->orderBy('voter','DESC')
+            ->get();
+        $genreAnime=DB::table('anime_genre')->where('id_anime',$anime->id);
+        $where=array();
+        foreach($genreAnime->get('id_genre') as $id) $where[]=$id->id_genre;
+        $rekomendasiAnime=DB::table('anime_genre')
+            ->join('anime','anime_genre.id_anime','=','anime.id')
+            ->whereIn('id_genre',$where)
+            ->orderBy('anime.voter','ASC')
+            ->limit(5)
+            ->get();
+        $genre=null;
+        foreach($genreAnime->get() as $item){
+            $getGenre=DB::table('genre')->find($item->id_genre)->nama;
+            $genre.="<span class='badge badge-secondary m-1'>".$getGenre."</span>";
+        }
+        if(!$anime)
             abort(404);
-        print_r($anime);
-        print_r($video);
+        return view('anime',[
+            'pengumuman' => $this->data['pengumuman'],
+            'genre' => $genre,
+            'anime' => $anime,
+            'video' => $video,
+            'rekomendasiAnime' => $rekomendasiAnime,
+            'karakterAnime' => $karakterAnime,
+        ]);
     }
     public function video($anime,$judul){
-        $anime=Anime::findByJudulAlternatif($anime);
-        $video=DB::table('video')->where('id_anime',$anime->getId())->where('judul_alternatif',$judul)->first();
-        $video=new Video($video);
-        if(!$anime->getId() OR !$video->getId())
+        $anime=DB::table('anime')->where('judul_alternatif',$anime)->first();
+        $video=DB::table('video')->where('id_anime',$anime->id)->where('judul_alternatif',$judul)->first();
+        $karakterAnime=DB::table('karakter_anime')
+            ->join('karakter','karakter_anime.id_karakter','=','karakter.id')
+            ->where('id_anime',$anime->id)
+            ->orderBy('voter','DESC')
+            ->get();
+        $genreAnime=DB::table('anime_genre')->where('id_anime',$anime->id);
+        $where=array();
+        foreach($genreAnime->get('id_genre') as $id) $where[]=$id->id_genre;
+        $rekomendasiAnime=DB::table('anime_genre')
+            ->join('anime','anime_genre.id_anime','=','anime.id')
+            ->whereIn('id_genre',$where)
+            ->orderBy('anime.voter','ASC')
+            ->limit(5)
+            ->get();
+        $genre=null;
+        foreach($genreAnime->get() as $item){
+            $getGenre=DB::table('genre')->find($item->id_genre)->nama;
+            $genre.="<span class='badge badge-secondary m-1'>".$getGenre."</span>";
+        }
+    
+        if(!$anime OR !$video)
             abort(404);
-        if(cb()->session()->id())
-            event(new NontonVideoAnime($video,cb()->session()->id()));
-        print_r($anime);
-        print_r($video);
+        $nextVideo=DB::table('video')->where('id_anime',$anime->id)->where('tipe','episode')->where('episode',$video->episode+1)->first();
+        $prevVideo=DB::table('video')->where('id_anime',$anime->id)->where('tipe','episode')->where('episode',$video->episode-1)->first();
+        if(cb()->session()->id()){
+            $eventVideo=new Video($video);
+            event(new NontonVideoAnime($eventVideo,cb()->session()->id()));
+        }
+        return view('video',[
+            'pengumuman' => $this->data['pengumuman'],
+            'genre' => $genre,
+            'anime' => $anime,
+            'video' => $video,
+            'nextVideo' => $nextVideo,
+            'prevVideo' => $prevVideo,
+            'rekomendasiAnime' => $rekomendasiAnime,
+            'karakterAnime' => $karakterAnime,
+        ]);
     }
     public function karakter($karakter){
         $karakter=DB::table('karakter')->where('nama_alternatif',$karakter)->first();
-        $karakter=new Karakter($karakter);
-        if(!$karakter->getId())
+        $anime=DB::table('karakter_anime')
+            ->join('anime','karakter_anime.id_anime','=','anime.id')
+            ->where('id_karakter',$karakter->id)
+            ->get();
+        if(!$karakter->id)
             abort(404);
-        print_r($karakter);    
+        return view('karakter',[
+            'pengumuman' => $this->data['pengumuman'],
+            'karakter' => $karakter,
+            'anime' => $anime,
+        ]); 
     }
     public function genre($genre){
-        $genre=Genre::findByNamaAlternatif($genre);
-        if(!$genre->getId())
-            abort(404);
-        $genreAnime=AnimeGenre::findAllByIdGenre($genre->getId());
-        $anime=array();
-        foreach($genreAnime as $ga){
-            $anime[]=Anime::findById($ga->id_anime);
-        }
-        print_r($anime);
+        $anime=DB::table('genre')
+        ->join('anime_genre','anime_genre.id_genre','=','genre.id')
+        ->join('anime','anime_genre.id_anime','=','anime.id')
+        ->where('nama_alternatif',$genre)
+        ->simplePaginate(20);
+        $this->data['title']=DB::table('genre')->where('nama_alternatif',$genre)->first()->nama;
+        $this->data['anime']=$anime;
+        return view('genreAnime',$this->data);
     }
     public function jadwal(){
-        $anime=Anime::all();
-        print_r($anime);
+        $anime=array();
+        $anime['senin']=DB::table('anime')->where('status','ongoing')->where('hari_tayang','senin')->orderBy('created_at','DESC')->get();
+        $anime['selasa']=DB::table('anime')->where('status','ongoing')->where('hari_tayang','selasa')->orderBy('created_at','DESC')->get();
+        $anime['rabu']=DB::table('anime')->where('status','ongoing')->where('hari_tayang','rabu')->orderBy('created_at','DESC')->get();
+        $anime['kamis']=DB::table('anime')->where('status','ongoing')->where('hari_tayang','kamis')->orderBy('created_at','DESC')->get();
+        $anime['jumat']=DB::table('anime')->where('status','ongoing')->where('hari_tayang','jumat')->orderBy('created_at','DESC')->get();
+        $anime['sabtu']=DB::table('anime')->where('status','ongoing')->where('hari_tayang','sabtu')->orderBy('created_at','DESC')->get();
+        $anime['minggu']=DB::table('anime')->where('status','ongoing')->where('hari_tayang','minggu')->orderBy('created_at','DESC')->get();
+        $this->data['anime']=$anime;
+        return view('jadwalAnime',$this->data);
     }
     public function cari(Request $request){
-        $anime=DB::table('anime')->where('judul','like','%'.$request->input('cari').'%')->get();
-        print_r($anime);
+        $anime=DB::table('anime')->where('judul','like','%'.$request->input('cari').'%')->simplePaginate(20);
+        $this->data['anime']=$anime;
+        $this->data['cari']=$request->input('cari');
+        return view('cariAnime',$this->data);
+    }
+    public function reportVideo($id_video){
+        $video=DB::table('video')->where('id',$id_video);
+        if($video->get()){
+            $video->update(['jum_report' => $video->first()->jum_report+1]);
+            return 'true';
+        }
+        else {
+            return 'false';
+        }
     }
     public function rating($id_anime,$rating){
         $anime=Anime::findById($id_anime);
@@ -197,13 +283,20 @@ class NontonAnimeController extends Controller
                     $dataVote=new Vote($checkVote);
                     if($dataVote->getId()){
                         $vote->delete();
+                        $totalVote=$anime->getVoter()-1;
+                        $anime->setVoter($totalVote);
+                        $anime->save();
+                        return 'Di UnVote';
                     }
                     else {
                         $dataVote->setIdUsers(cb()->session()->id());
                         $dataVote->setIdAnime($id);
                         $dataVote->save();
+                        $totalVote=$anime->getVoter()+1;
+                        $anime->setVoter($totalVote);
+                        $anime->save();
+                        return 'Di Vote';
                     }
-                    return 'true';
                 }
                 else
                     return 'false';
@@ -216,11 +309,19 @@ class NontonAnimeController extends Controller
                     $dataVote=new Vote($checkVote);
                     if($dataVote->getId()){
                         $vote->delete();
+                        $totalVote=$karakter->getVoter()-1;
+                        $karakter->setVoter($totalVote);
+                        $karakter->save();
+                        return 'Di UnVote';
                     }
                     else {
                         $dataVote->setIdUsers(cb()->session()->id());
                         $dataVote->setIdKarakter($id);
                         $dataVote->save();
+                        $totalVote=$karakter->getVoter()+1;
+                        $karakter->setVoter($totalVote);
+                        $karakter->save();
+                        return 'Di Vote';
                     }
                     return 'true';
                 }
