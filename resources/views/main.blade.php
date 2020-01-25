@@ -12,11 +12,11 @@
             data-html="true"
             title="<a href='{{route('Anime',['anime'=>$item->judul_alternatif])}}' class='text-dark'>{{$item->judul}} <i class='fa fa-external-link'></i></a>" 
             data-content="
-            Rating : {{$item->rating}} <br>
-            Voter : {{$item->voter}} <br>
-            Total Episode : {{$item->total_episode}} <br>
-            Status : {{$item->status}} <br>
-            Hari Tayang : {{$item->hari_tayang}} <br>
+            <b>Rating</b> : {{$item->rating}} <br>
+            <b>Voter</b> : {{$item->voter}} <br>
+            <b>Total Episode</b> : {{$item->total_episode}} <br>
+            <b>Status</b> : {{$item->status}} <br>
+            <b>Hari Tayang</b> : {{$item->hari_tayang}} <br>
             "
             data-placement="bottom"
             href="javascript:void(0);"
@@ -31,7 +31,7 @@
 </div>
 <div class="row">
     <div class="col mt-2">
-        @yield('main');
+        @yield('main')
     </div>
     <div class="col col-md-4 col-12 mt-2">
         <div class="card">
@@ -54,11 +54,11 @@
                                 data-html="true"
                                 title="<a href='{{route('Anime',['anime'=>$item->judul_alternatif])}}' class='text-dark'>{{$item->judul}} <i class='fa fa-external-link'></i></a>" 
                                 data-content="
-                                Rating : {{$item->rating}} <br>
-                                Voter : {{$item->voter}} <br>
-                                Total Episode : {{$item->total_episode}} <br>
-                                Status : {{$item->status}} <br>
-                                Hari Tayang : {{$item->hari_tayang}} <br>
+                                <b>Rating</b> : {{$item->rating}} <br>
+                                <b>Voter</b> : {{$item->voter}} <br>
+                                <b>Total Episode</b> : {{$item->total_episode}} <br>
+                                <b>Status</b> : {{$item->status}} <br>
+                                <b>Hari Tayang</b> : {{$item->hari_tayang}} <br>
                                 "
                                 data-placement="bottom"
                                 href="javascript:void(0);"
@@ -82,7 +82,7 @@
                         data-html="true"
                         title="<a href='{{route('KarakterAnime',['karakter'=>$item->nama_alternatif])}}' class='text-dark'>{{$item->nama}} <i class='fa fa-external-link'></i></a>" 
                         data-content="
-                        Voter : {{$item->voter}}
+                        <b>Voter</b> : {{$item->voter}}
                         "
                         data-placement="bottom"
                         href="javascript:void(0);"
@@ -115,11 +115,11 @@
                         data-html="true"
                         title="<a href='{{route('Anime',['anime'=>$item->judul_alternatif])}}' class='text-dark'>{{$item->judul}} <i class='fa fa-external-link'></i></a>" 
                         data-content="
-                        Rating : {{$item->rating}} <br>
-                        Voter : {{$item->voter}} <br>
-                        Total Episode : {{$item->total_episode}} <br>
-                        Status : {{$item->status}} <br>
-                        Hari Tayang : {{$item->hari_tayang}} <br>
+                        <b>Rating</b> : {{$item->rating}} <br>
+                        <b>Voter</b> : {{$item->voter}} <br>
+                        <b>Total Episode</b> : {{$item->total_episode}} <br>
+                        <b>Status</b> : {{$item->status}} <br>
+                        <b>Hari Tayang</b> : {{$item->hari_tayang}} <br>
                         "
                         data-placement="bottom"
                         href="javascript:void(0);"
@@ -151,11 +151,11 @@
                             data-html="true"
                             title="<a href='{{route('Anime',['anime'=>$item->judul_alternatif])}}' class='text-dark'>{{$item->judul}} <i class='fa fa-external-link'></i></a>" 
                             data-content="
-                            Rating : {{$item->rating}} <br>
-                            Voter : {{$item->voter}} <br>
-                            Total Episode : {{$item->total_episode}} <br>
-                            Status : {{$item->status}} <br>
-                            Hari Tayang : {{$item->hari_tayang}} <br>
+                            <b>Rating</b> : {{$item->rating}} <br>
+                            <b>Voter</b> : {{$item->voter}} <br>
+                            <b>Total Episode</b> : {{$item->total_episode}} <br>
+                            <b>Status</b> : {{$item->status}} <br>
+                            <b>Hari Tayang</b> : {{$item->hari_tayang}} <br>
                             "
                             data-placement="bottom"
                             href="javascript:void(0);"
@@ -187,7 +187,7 @@
                     data-html="true"
                     title="<a href='{{route('KarakterAnime',['karakter'=>$item->nama_alternatif])}}' class='text-dark'>{{$item->nama}} <i class='fa fa-external-link'></i></a>" 
                     data-content="
-                    Voter : {{$item->voter}}
+                    <b>Voter</b> : {{$item->voter}}
                     "
                     data-placement="bottom"
                     href="javascript:void(0);"

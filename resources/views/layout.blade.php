@@ -15,12 +15,14 @@
 
 <body>
     <nav class="navbar navbar-light navbar-expand-lg bg-white clean-navbar">
-        <div class="container"><a class="navbar-brand logo" href="#">{{ cb()->getAppName() }}</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="container"><a class="navbar-brand logo" href="{{ url('/') }}">{{ cb()->getAppName() }}</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse"
                 id="navcol-1">
                 <ul class="nav navbar-nav ml-auto">
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="{{ url('/') }}">Home</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" data-toggle="modal" data-target="#cariAnime" href="#cariAnime">Cari Anime</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="{{ url('/') }}">Home</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="{{ route('SemuaAnime') }}">Anime</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="{{ route('SemuaVideo') }}">Video</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" data-toggle="modal" data-target="#cariAnime" href="#cariAnime">Cari Anime</a></li>
                     @if(!cb()->session()->id())
                     <li class="nav-item" role="presentation"><a class="nav-link" href="{{ url(cb()->getAdminPath().'/login') }}">Login</a></li>
                     @else
@@ -38,7 +40,7 @@
     <footer class="p-4">
         <div class="row">
             <div class="col">
-                <p class="text-monospace text-center">Anime (c) 2017</p>
+                <p class="text-monospace text-center">{{ cb()->getAppName() }} &COPY; {{ date('Y') }}</p>
             </div>
         </div>
     </footer>

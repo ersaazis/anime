@@ -14,7 +14,6 @@ use App\Models\Users;
 use App\Models\Vote;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
 
 class NontonAnimeController extends Controller
 {
@@ -31,7 +30,7 @@ class NontonAnimeController extends Controller
             7=>'minggu',
         );
         $hariN = date('w');
-        $rilisHariIni=Anime::findAllByHariTayang($hari[$hariN]);
+        $rilisHariIni=DB::table('anime')->where('hari_tayang',$hari[$hariN])->where('status','ongoing')->get();
         $tags=Genre::all();
         $animeFavorit=DB::table('anime')->orderBy('voter','DESC')->limit(8)->get();
         $karakterFavorit=DB::table('karakter')->orderBy('voter','DESC')->limit(8)->get();
@@ -44,11 +43,79 @@ class NontonAnimeController extends Controller
         // dd($rilisHariIni);
     }
     public function index(){
+        $videoTrending=DB::table('video')
+            ->leftJoin('counter','video.id','=','counter.id_video')
+            ->leftJoin('anime','video.id_anime','=','anime.id')
+            ->select(
+                'video.*',
+                'anime.judul as judul_anime',
+                'anime.judul_alternatif as judul_alternatif_anime',
+                'anime.rating',
+                'anime.voter',
+                'anime.total_episode',
+                'anime.hari_tayang',
+                'anime.status',
+                DB::raw('SUM(counter.counter) as counter')
+            )
+            ->where('counter.tanggal',date('Y-m-d'))
+            ->orWhere('counter.tanggal',NULL)
+            ->groupBy('video.id')
+            ->orderBy('counter','DESC')
+            ->limit(8)
+            ->get();
+        $animeTrending=DB::table('anime')
+            ->leftJoin('counter','anime.id','=','counter.id_anime')
+            ->select(
+                'anime.*',
+                'counter.tanggal',
+                DB::raw('SUM(counter.counter) as counter')
+            )
+            ->where('counter.tanggal',date('Y-m-d'))
+            ->orWhere('counter.tanggal',NULL)
+            ->groupBy('anime.id')
+            ->get();
+        $anime=DB::table('video')
+            ->leftJoin('anime','video.id_anime','=','anime.id')
+            ->select(
+                'video.*',
+                'anime.judul as judul_anime',
+                'anime.judul_alternatif as judul_alternatif_anime',
+                'anime.rating',
+                'anime.voter',
+                'anime.total_episode',
+                'anime.hari_tayang',
+                'anime.status',
+            )
+            ->orderBy('video.created_at','DESC')
+            ->limit(8)
+            ->get();
+        $this->data['videoTrending']=$videoTrending;
+        $this->data['animeTrending']=$animeTrending;
+        $this->data['anime']=$anime;
         return view('index',$this->data);
     }
     public function semuaAnime(){
-        $anime=Anime::all();
-        print_r($anime);
+        $anime=DB::table('anime')->orderBy('created_at','DESC')->simplePaginate(20);
+        $this->data['anime']=$anime;
+        return view('semuaAnime',$this->data);
+    }
+    public function semuaVideo(){
+        $video=DB::table('video')
+        ->leftJoin('anime','video.id_anime','=','anime.id')
+        ->select(
+            'video.*',
+            'anime.judul as judul_anime',
+            'anime.judul_alternatif as judul_alternatif_anime',
+            'anime.rating',
+            'anime.voter',
+            'anime.total_episode',
+            'anime.hari_tayang',
+            'anime.status',
+        )
+        ->orderBy('video.created_at','DESC')
+        ->simplePaginate(20);
+        $this->data['video']=$video;
+        return view('semuaVideo',$this->data);
     }
     public function anime($anime){
         $anime=Anime::findByJudulAlternatif($anime);
@@ -59,7 +126,6 @@ class NontonAnimeController extends Controller
         print_r($video);
     }
     public function video($anime,$judul){
-        // 5
         $anime=Anime::findByJudulAlternatif($anime);
         $video=DB::table('video')->where('id_anime',$anime->getId())->where('judul_alternatif',$judul)->first();
         $video=new Video($video);
