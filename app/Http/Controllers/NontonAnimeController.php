@@ -27,7 +27,7 @@ class NontonAnimeController extends Controller
             4=>'kamis',
             5=>'jumat',
             6=>'sabtu',
-            7=>'minggu',
+            0=>'minggu',
         );
         $hariN = date('w');
         $rilisHariIni=DB::table('anime')->where('hari_tayang',$hari[$hariN])->where('status','ongoing')->get();
@@ -74,6 +74,7 @@ class NontonAnimeController extends Controller
             ->where('counter.tanggal',date('Y-m-d'))
             ->orWhere('counter.tanggal',NULL)
             ->groupBy('anime.id')
+            ->limit(8)
             ->get();
         $anime=DB::table('video')
             ->leftJoin('anime','video.id_anime','=','anime.id')

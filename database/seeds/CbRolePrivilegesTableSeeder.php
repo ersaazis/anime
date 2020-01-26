@@ -52,17 +52,6 @@ class CbRolePrivilegesTableSeeder extends Seeder
             ),
             3 => 
             array (
-                'id' => 4,
-                'cb_roles_id' => 1,
-                'cb_menus_id' => 5,
-                'can_browse' => 1,
-                'can_create' => 1,
-                'can_read' => 1,
-                'can_update' => 1,
-                'can_delete' => 1,
-            ),
-            4 => 
-            array (
                 'id' => 5,
                 'cb_roles_id' => 1,
                 'cb_menus_id' => 6,
@@ -72,7 +61,7 @@ class CbRolePrivilegesTableSeeder extends Seeder
                 'can_update' => 1,
                 'can_delete' => 1,
             ),
-            5 => 
+            4 => 
             array (
                 'id' => 6,
                 'cb_roles_id' => 1,
@@ -83,7 +72,7 @@ class CbRolePrivilegesTableSeeder extends Seeder
                 'can_update' => 1,
                 'can_delete' => 1,
             ),
-            6 => 
+            5 => 
             array (
                 'id' => 7,
                 'cb_roles_id' => 2,
@@ -94,7 +83,7 @@ class CbRolePrivilegesTableSeeder extends Seeder
                 'can_update' => 0,
                 'can_delete' => 0,
             ),
-            7 => 
+            6 => 
             array (
                 'id' => 8,
                 'cb_roles_id' => 2,
@@ -105,7 +94,7 @@ class CbRolePrivilegesTableSeeder extends Seeder
                 'can_update' => 0,
                 'can_delete' => 0,
             ),
-            8 => 
+            7 => 
             array (
                 'id' => 9,
                 'cb_roles_id' => 2,
@@ -116,18 +105,7 @@ class CbRolePrivilegesTableSeeder extends Seeder
                 'can_update' => 0,
                 'can_delete' => 0,
             ),
-            9 => 
-            array (
-                'id' => 10,
-                'cb_roles_id' => 2,
-                'cb_menus_id' => 5,
-                'can_browse' => 0,
-                'can_create' => 0,
-                'can_read' => 0,
-                'can_update' => 0,
-                'can_delete' => 0,
-            ),
-            10 => 
+            8 => 
             array (
                 'id' => 11,
                 'cb_roles_id' => 2,
@@ -138,7 +116,7 @@ class CbRolePrivilegesTableSeeder extends Seeder
                 'can_update' => 0,
                 'can_delete' => 0,
             ),
-            11 => 
+            9 => 
             array (
                 'id' => 12,
                 'cb_roles_id' => 2,
@@ -149,7 +127,7 @@ class CbRolePrivilegesTableSeeder extends Seeder
                 'can_update' => 0,
                 'can_delete' => 0,
             ),
-            12 => 
+            10 => 
             array (
                 'id' => 13,
                 'cb_roles_id' => 1,
@@ -160,7 +138,7 @@ class CbRolePrivilegesTableSeeder extends Seeder
                 'can_update' => 1,
                 'can_delete' => 1,
             ),
-            13 => 
+            11 => 
             array (
                 'id' => 14,
                 'cb_roles_id' => 1,
@@ -171,7 +149,7 @@ class CbRolePrivilegesTableSeeder extends Seeder
                 'can_update' => 1,
                 'can_delete' => 1,
             ),
-            14 => 
+            12 => 
             array (
                 'id' => 15,
                 'cb_roles_id' => 2,
@@ -182,7 +160,7 @@ class CbRolePrivilegesTableSeeder extends Seeder
                 'can_update' => 0,
                 'can_delete' => 0,
             ),
-            15 => 
+            13 => 
             array (
                 'id' => 16,
                 'cb_roles_id' => 2,

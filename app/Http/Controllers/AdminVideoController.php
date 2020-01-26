@@ -21,7 +21,7 @@ class AdminVideoController extends CBController {
 		$this->addText("Server2","server2")->showIndex(false)->required(false)->strLimit(150)->maxLength(255);
 		$this->addText("Server3","server3")->showIndex(false)->required(false)->strLimit(150)->maxLength(255);
 		$this->addText("Server4","server4")->showIndex(false)->required(false)->strLimit(150)->maxLength(255);
-		$this->addNumber("Jum Report","jum_report")->required(false)->showAdd(false)->showEdit(false);
+		$this->addNumber("Jumlah Report","jum_report")->required(false)->showAdd(false);
 		$this->addSelectTable("Anime","id_anime",["table"=>"anime","value_option"=>"id","display_option"=>"judul","sql_condition"=>""]);
 		$this->addDatetime("Created At","created_at")->required(false)->showIndex(false)->showAdd(false)->showEdit(false);
 		$this->addDatetime("Updated At","updated_at")->required(false)->showIndex(false)->showAdd(false)->showEdit(false);
