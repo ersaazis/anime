@@ -93,11 +93,15 @@ class ScrapAnime extends Command
                 $idGenre=DB::table('genre')->where('nama',$item)->first('id')->id;
                 DB::table('anime_genre')->insert(['id_anime' => $id_anime,'id_genre' => $idGenre]);
             }
-            $this->info('+ [ ANIME ] : '.$anime['judul']);
+            // $this->info('+ [ ANIME ] : '.$anime['judul']);
         }
 
         // LIST EPISODE ANIME
         $listEpisodeAnime = HTMLDomParser::str_get_html($responseAnime)->find('div.box-body.episode_list > table#table-episode > tbody > tr > td > a');
+        $episode=count($listEpisodeAnime);
+        $this->info('+ [ Scrap Episode Anime ]');
+        $bar = $this->output->createProgressBar($episode);
+        $bar->start();
         foreach($listEpisodeAnime as $item){
             // Cek Episode Video Anime
             $cekVideo= DB::table('video')->where('id_anime',$id_anime)->where('judul',str_replace($anime['judul'],'',$item->plaintext))->doesntExist();
@@ -126,7 +130,7 @@ class ScrapAnime extends Command
                 $videoAnime['judul']=str_replace($anime['judul'],'',$item->plaintext);
                 $videoAnime['judul_alternatif']=Str::slug($videoAnime['judul']);
                 $videoAnime['tipe']='episode';
-                $videoAnime['episode']=0;
+                $videoAnime['episode']=$episode--;
                 $videoAnime['id_anime']=$id_anime;
                 $videoAnime['foto']='storage/files/'.date('Y/m/d').'/'.$fotoVideoAnimeFileName;
                 $videoAnime['deskripsi']=$deskripsiVideoAnime;
@@ -143,10 +147,16 @@ class ScrapAnime extends Command
             }
             // else
             //     $this->info('   - [ SKIP Episode ] : '.str_replace($anime['judul'],'',$item->plaintext));
+            $bar->advance();
         }
-
+        $bar->finish();
+        $this->info('');
         // LIST MOVIE ANIME
         $listMovieAnime = HTMLDomParser::str_get_html($responseAnime)->find('div.box-body.episode_list > table#table-movie > tbody > tr > td > a');
+        $episode=count($listMovieAnime);
+        $this->info('+ [ Scrap Movie Anime ]');
+        $bar = $this->output->createProgressBar($episode);
+        $bar->start();
         foreach($listMovieAnime as $item){
             // Cek Movie Video Anime
             $cekVideo= DB::table('video')->where('id_anime',$id_anime)->where('judul',$item->plaintext)->doesntExist();
@@ -175,7 +185,7 @@ class ScrapAnime extends Command
                 $videoAnime['judul']=$item->plaintext;
                 $videoAnime['judul_alternatif']=Str::slug($videoAnime['judul']);
                 $videoAnime['tipe']='movie';
-                $videoAnime['episode']=0;
+                $videoAnime['episode']=$episode--;
                 $videoAnime['id_anime']=$id_anime;
                 $videoAnime['foto']='storage/files/'.date('Y/m/d').'/'.$fotoVideoAnimeFileName;
                 $videoAnime['deskripsi']=$deskripsiVideoAnime;
@@ -187,10 +197,11 @@ class ScrapAnime extends Command
                     $videoAnime['server'.$i++]=$item->value;
                 }
                 DB::table('video')->insert($videoAnime);
-                $this->info('+ [ Movie ] : '.$videoAnime['judul']);
+                // $this->info('+ [ Movie ] : '.$videoAnime['judul']);
                 // sleep(1);
+                $bar->advance();
             }
-            // else
+            $bar->finish();            // else
             //     $this->info('   - [ SKIP Movie ] : '.$item->plaintext);
         }
     }
