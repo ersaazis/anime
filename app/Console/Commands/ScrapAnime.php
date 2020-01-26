@@ -141,8 +141,8 @@ class ScrapAnime extends Command
                 $this->info('+ [ Episode ] : '.$videoAnime['judul']);
                 // sleep(1);
             }
-            else
-                $this->info('   - [ SKIP Episode ] : '.str_replace($anime['judul'],'',$item->plaintext));
+            // else
+            //     $this->info('   - [ SKIP Episode ] : '.str_replace($anime['judul'],'',$item->plaintext));
         }
 
         // LIST MOVIE ANIME
@@ -190,8 +190,8 @@ class ScrapAnime extends Command
                 $this->info('+ [ Movie ] : '.$videoAnime['judul']);
                 // sleep(1);
             }
-            else
-                $this->info('   - [ SKIP Movie ] : '.$item->plaintext);
+            // else
+            //     $this->info('   - [ SKIP Movie ] : '.$item->plaintext);
         }
     }
 }
