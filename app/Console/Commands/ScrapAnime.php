@@ -100,7 +100,7 @@ class ScrapAnime extends Command
         $listEpisodeAnime = HTMLDomParser::str_get_html($responseAnime)->find('div.box-body.episode_list > table#table-episode > tbody > tr > td > a');
         foreach($listEpisodeAnime as $item){
             // Cek Episode Video Anime
-            $cekVideo= DB::table('video')->where('judul',str_replace($anime['judul'],'',$item->plaintext))->doesntExist();
+            $cekVideo= DB::table('video')->where('id_anime',$id_anime)->where('judul',str_replace($anime['judul'],'',$item->plaintext))->doesntExist();
             if($cekVideo){
                 // CURL Episode Video Anime
                 $urlvideo = $item->href;
@@ -149,7 +149,7 @@ class ScrapAnime extends Command
         $listMovieAnime = HTMLDomParser::str_get_html($responseAnime)->find('div.box-body.episode_list > table#table-movie > tbody > tr > td > a');
         foreach($listMovieAnime as $item){
             // Cek Movie Video Anime
-            $cekVideo= DB::table('video')->where('judul',$item->plaintext)->doesntExist();
+            $cekVideo= DB::table('video')->where('id_anime',$id_anime)->where('judul',$item->plaintext)->doesntExist();
             if($cekVideo){
                 // CURL Movie Video Anime
                 $urlvideo = $item->href;
