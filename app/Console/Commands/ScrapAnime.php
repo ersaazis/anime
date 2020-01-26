@@ -142,9 +142,11 @@ class ScrapAnime extends Command
                     $videoAnime['server'.$i++]=$item->value;
                 }
                 DB::table('video')->insert($videoAnime);
-                $this->info('+ [ Episode ] : '.$videoAnime['judul']);
+                // $this->info('+ [ Episode ] : '.$videoAnime['judul']);
                 // sleep(1);
             }
+            else
+                $episode--;
             // else
             //     $this->info('   - [ SKIP Episode ] : '.str_replace($anime['judul'],'',$item->plaintext));
             $bar->advance();
@@ -201,8 +203,11 @@ class ScrapAnime extends Command
                 // sleep(1);
                 $bar->advance();
             }
-            $bar->finish();            // else
+            else
+                $episode--;
+            // else
             //     $this->info('   - [ SKIP Movie ] : '.$item->plaintext);
+            $bar->finish();
         }
     }
 }
