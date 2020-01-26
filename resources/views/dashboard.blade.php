@@ -176,12 +176,12 @@ if(cb()->session()->roleId() == 1){
                     </div>
                 </div>
             </div>
-            <div class="box">
+            <div class="box collapsed-box">
                 <div class="box-header with-border">
                     <h3 class="box-title">Video Trending Hari Ini</h3>
 
                     <div class="box-tools pull-right">
-                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
                     </button>
                     </div>
                 </div>
@@ -200,7 +200,7 @@ if(cb()->session()->roleId() == 1){
                                 <tbody>
                                     @foreach ($videoTrending as $item)
                                     <tr>
-                                        <td>{{$o++}}</td>
+                                        <td>{{$p++}}</td>
                                         <td>{{$item->judul_anime}}</td>
                                         <td>{{$item->judul}}</td>
                                         <td>
@@ -218,7 +218,7 @@ if(cb()->session()->roleId() == 1){
         <div class="col-md-6">
             <div class="box">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Report Anime Bulan Ini</h3>
+                    <h3 class="box-title">Report Anime Terfavorit Bulan Ini</h3>
 
                     <div class="box-tools pull-right">
                     <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -255,7 +255,7 @@ if(cb()->session()->roleId() == 1){
         <div class="col-md-6">
             <div class="box">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Report Video Bulan Ini</h3>
+                    <h3 class="box-title">Report Video Terfavorit Bulan Ini</h3>
 
                     <div class="box-tools pull-right">
                     <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -290,7 +290,7 @@ if(cb()->session()->roleId() == 1){
         <div class="col-md-6">
                 <div class="box">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Report Genre Bulan Ini</h3>
+                        <h3 class="box-title">Report Genre Terfavorit Bulan Ini</h3>
     
                         <div class="box-tools pull-right">
                         <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>

@@ -16,9 +16,9 @@ class AnimeGenre extends Migration
         Schema::create('anime_genre', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('id_anime')->unsigned()->nullable();
-            $table->foreign('id_anime')->references('id')->on('anime')->onDelete('set null');
+            $table->foreign('id_anime')->references('id')->on('anime')->onDelete('cascade');
             $table->bigInteger('id_genre')->unsigned()->nullable();
-            $table->foreign('id_genre')->references('id')->on('genre')->onDelete('set null');
+            $table->foreign('id_genre')->references('id')->on('genre')->onDelete('cascade');
             $table->timestamps();
         });
     }
