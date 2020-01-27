@@ -1,6 +1,6 @@
 @extends('main')
 @section('title','Semua Video')
-@section('deskripsi',strip_tags($anime->deskripsi))
+@section('deskripsi','Semua Video Anime, Nonton Anime Gratis tanpa iklan')
 @section('main')
 <div class="card">
     <div class="card-body">
