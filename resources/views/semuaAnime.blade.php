@@ -1,5 +1,6 @@
 @extends('main')
 @section('title','Semua Anime')
+@section('deskripsi','Semua Anime, Nonton Anime Gratis tanpa iklan')
 @section('main')
 <div class="card">
     <div class="card-body">

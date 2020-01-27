@@ -1,5 +1,6 @@
 @extends('main')
 @section('title','Jadwal Rilis')
+@section('deskripsi','Jadwal Rilis Anime, Nonton Anime Gratis tanpa iklan')
 @section('main')
 <div class="card">
     <div class="card-body">

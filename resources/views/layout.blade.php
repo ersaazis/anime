@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="utf-8">
+    <meta name="description" content="@yield('deskripsi','Nonton Anime Gratis tanpa iklan')">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>{{ cb()->getAppName() }} - @yield('title','Nonton Anime Gratis')</title>
     <link rel="stylesheet" href="{{ url('/') }}/assets/bootstrap/css/bootstrap.min.css">

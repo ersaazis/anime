@@ -1,5 +1,6 @@
 @extends('main')
 @section('title','Hasil Pencarian Untuk '.$cari)
+@section('deskripsi','Hasil Pencarian Anime dengan Kata Kunci '.$cari.', Nonton Anime Gratis tanpa iklan')
 @section('main')
 <div class="card">
     <div class="card-body">

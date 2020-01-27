@@ -1,5 +1,6 @@
 @extends('layout')
 @section('title','Anime '.$anime->judul)
+@section('deskripsi',strip_tags($anime->deskripsi))
 @section('content')
 <div class="row">
     <div class="col-12 col-md-6">

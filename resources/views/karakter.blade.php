@@ -1,5 +1,6 @@
 @extends('layout')
 @section('title','Karakter '.$karakter->nama)
+@section('deskripsi',strip_tags($karakter->deskripsi))
 @section('content')
 <div class="row">
     <div class="col-12 col-md-6">

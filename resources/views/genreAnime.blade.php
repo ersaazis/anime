@@ -1,5 +1,6 @@
 @extends('main')
 @section('title','Genre '.$title)
+@section('deskripsi','Semua Anime dengan Genre '.$title)
 @section('main')
 <div class="card">
     <div class="card-body">

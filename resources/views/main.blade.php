@@ -43,7 +43,9 @@
         </a>
         @endif
     @endforeach
-    <div class="col col-12"><button class="btn float-right m-2 btn-sm" type="button"  data-toggle="modal" data-target="#AnimeRilisHariIni">Lainya<br></button></div>
+    @if (count($animeTayang))
+        <div class="col col-12"><button class="btn float-right m-2 btn-sm" type="button"  data-toggle="modal" data-target="#AnimeRilisHariIni">Lainya<br></button></div>
+    @endif
 </div>
 <div class="row">
     <div class="col mt-2">
@@ -102,6 +104,7 @@
                 </div>
             </div>
         </div>
+        @if (count($karakterFavorit))
         <div class="card mt-2">
             <div class="card-body">
                 <h4 class="card-title">Karakter Favorit<button class="btn float-right btn-sm" type="button" data-toggle="modal" data-target="#KarakterTerfavorit">Lainya<br></button></h4>
@@ -134,6 +137,7 @@
                 </div>
             </div>
         </div>
+        @endif
     </div>
 </div>
 <!-- Modal Anime Rilis Hari Ini -->

@@ -1,5 +1,6 @@
 @extends('main')
 @section('title','Semua Video')
+@section('deskripsi',strip_tags($anime->deskripsi))
 @section('main')
 <div class="card">
     <div class="card-body">
