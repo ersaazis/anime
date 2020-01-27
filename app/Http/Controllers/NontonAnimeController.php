@@ -87,7 +87,7 @@ class NontonAnimeController extends Controller
                 'anime.voter',
                 'anime.total_episode',
                 'anime.hari_tayang',
-                'anime.status',
+                'anime.status'
             )
             ->orderBy('video.created_at','DESC')
             ->limit(8)
