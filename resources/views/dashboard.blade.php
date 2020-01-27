@@ -81,7 +81,7 @@ if(cb()->session()->roleId() == 1){
                                     @foreach ($dataVideoRusak as $item)
                                     <tr>
                                         <td>{{$i++}}</td>
-                                        <td>{{$item->judul_anime}} - {{$item->judul}}</td>
+                                        <td>{{$item->judul_anime}} - {!! $item->judul !!}</td>
                                         <td>{{$item->jum_report}}</td>
                                         <td>
                                             <a href="{{route('VideoAnime',['anime'=>$item->judul_alternatif_anime,'judul'=>$item->judul_alternatif])}}" class="btn btn-xs btn-primary" target="_blank">Lihat</a>
@@ -125,7 +125,7 @@ if(cb()->session()->roleId() == 1){
                                     @foreach ($dataAnimeUpdate as $item)
                                     <tr>
                                         <td>{{$j++}}</td>
-                                        <td>{{$item->judul}}</td>
+                                        <td>{!! $item->judul !!}</td>
                                         <td>{{ucwords($item->hari_tayang)}}</td>
                                         <td>
                                             <a href="{{url(cb()->getAdminPath().'/video/add/')}}" class="btn btn-xs btn-primary">Tambah</a>
@@ -163,7 +163,7 @@ if(cb()->session()->roleId() == 1){
                                     @foreach ($animeTrending as $item)
                                     <tr>
                                         <td>{{$o++}}</td>
-                                        <td>{{$item->judul}}</td>
+                                        <td>{!! $item->judul !!}</td>
                                         <td>{{ucwords($item->hari_tayang)}}</td>
                                         <td>
                                             <a target="_blank" href="{{route('Anime',['anime'=>$item->judul_alternatif])}}" class="btn btn-xs btn-primary">Lihat</a>
@@ -202,7 +202,7 @@ if(cb()->session()->roleId() == 1){
                                     <tr>
                                         <td>{{$p++}}</td>
                                         <td>{{$item->judul_anime}}</td>
-                                        <td>{{$item->judul}}</td>
+                                        <td>{!! $item->judul !!}</td>
                                         <td>
                                             <a target="_blank" href="{{route('VideoAnime',['anime'=>$item->judul_alternatif_anime,'video'=>$item->judul_alternatif])}}" class="btn btn-xs btn-primary">Lihat</a>
                                         </td>
@@ -241,7 +241,7 @@ if(cb()->session()->roleId() == 1){
                                 @foreach ($labelReportAnime as $item)
                                     <tr>
                                         <td class="{{$color[$k]}}" width="25%">Anime {{$k++}}</td>
-                                        <td>{{$item->judul}}</td>
+                                        <td>{!! $item->judul !!}</td>
                                     </tr>                                        
                                 @endforeach
                             </table>
@@ -278,7 +278,7 @@ if(cb()->session()->roleId() == 1){
                                 @foreach ($labelReportVideo as $item)
                                     <tr>
                                         <td class="{{$color[$l]}}" width="25%">Video {{$l++}}</td>
-                                        <td>{{$item->judul_anime}} - {{$item->judul}}</td>
+                                        <td>{{$item->judul_anime}} - {!! $item->judul !!}</td>
                                     </tr>                                        
                                 @endforeach
                             </table>

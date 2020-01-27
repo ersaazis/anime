@@ -13,7 +13,7 @@
                     </div>
                     @endif
                     <div class="col-12 col-md-9 mt-2">
-                        <h3>{{$anime->judul}}</h3>
+                        <h3>{!! $anime->judul !!}</h3>
                         {!! $anime->deskripsi !!}
                     </div>
                 </div>
@@ -90,7 +90,7 @@
                 <h4 class="card-title">Episode</h4>
                 <ul class="list-unstyled">
                     @forelse ($video['episode'] as $item)
-                        <li><a href="{{route('VideoAnime',['anime'=>$anime->judul_alternatif,'video'=>$item->judul_alternatif])}}">{{$item->judul}}</a></li>
+                        <li><a href="{{route('VideoAnime',['anime'=>$anime->judul_alternatif,'video'=>$item->judul_alternatif])}}">{!! $item->judul !!}</a></li>
                     @empty
                         <li>Tidak Ada</li>
                     @endforelse
@@ -102,7 +102,7 @@
                 <h4 class="card-title">Movie</h4>
                 <ul class="list-unstyled">
                     @forelse ($video['movie'] as $item)
-                        <li><a href="{{route('VideoAnime',['anime'=>$anime->judul_alternatif,'video'=>$item->judul_alternatif])}}">{{$item->judul}}</a></li>
+                        <li><a href="{{route('VideoAnime',['anime'=>$anime->judul_alternatif,'video'=>$item->judul_alternatif])}}">{!! $item->judul !!}</a></li>
                     @empty
                         <li>Tidak Ada</li>
                     @endforelse
@@ -114,7 +114,7 @@
                 <h4 class="card-title">Rekomendasi</h4>
                 <ul class="list-unstyled">
                     @forelse ($rekomendasiAnime as $item)
-                        <li><a href="{{route('Anime',['anime'=>$item->judul_alternatif])}}">{{$item->judul}}</a></li>
+                        <li><a href="{{route('Anime',['anime'=>$item->judul_alternatif])}}">{!! $item->judul !!}</a></li>
                     @empty
                         <li>Tidak Ada</li>
                     @endforelse

@@ -43,7 +43,7 @@
         <div class="container">
             @foreach ($pengumuman as $item)
             <div class="alert alert-primary" role="alert">
-                <b>{{$item->judul}}</b>, {{ $item->isi }}
+                <b>{!! $item->judul !!}</b>, {{ $item->isi }}
             </div>
             @endforeach
             @yield('content')

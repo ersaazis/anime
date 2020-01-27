@@ -131,7 +131,7 @@
                     </div>
                     @endif
                     <div class="col-12 col-md-9 mt-2">
-                        <h3>{{$video->judul}}</h3>
+                        <h3>{!! $video->judul !!}</h3>
                         {!! $video->deskripsi !!}
                     </div>
                 </div>
@@ -142,7 +142,7 @@
                 <h4 class="card-title">Rekomendasi</h4>
                 <ul class="list-unstyled">
                     @forelse ($rekomendasiAnime as $item)
-                        <li><a href="{{route('Anime',['anime'=>$item->judul_alternatif])}}">{{$item->judul}}</a></li>
+                        <li><a href="{{route('Anime',['anime'=>$item->judul_alternatif])}}">{!! $item->judul !!}</a></li>
                     @empty
                         <li>Tidak Ada</li>
                     @endforelse

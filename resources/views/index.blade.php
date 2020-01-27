@@ -13,7 +13,7 @@
                     data-toggle="popover" 
                     data-trigger="focus"
                     data-html="true"
-                    title="<a href='{{route('VideoAnime',['anime'=>$item->judul_alternatif_anime,'judul'=>$item->judul_alternatif])}}' class='text-dark'>{{$item->judul}} <i class='fa fa-external-link'></i></a>" 
+                    title="<a href='{{route('VideoAnime',['anime'=>$item->judul_alternatif_anime,'judul'=>$item->judul_alternatif])}}' class='text-dark'>{!! $item->judul !!} <i class='fa fa-external-link'></i></a>" 
                     data-content="
                     <b>Anime</b> : {{$item->judul_anime}} <br>
                     <b>Rating</b> :
@@ -38,7 +38,7 @@
                 @else
                 <div class="card h-100">
                     <div class="card-body text-center text-dark">
-                        {{$item->judul_anime}} - {{$item->judul}}
+                        {{$item->judul_anime}} - {!! $item->judul !!}
                     </div>
                 </div>
                 @endif
@@ -58,7 +58,7 @@
                     data-toggle="popover" 
                     data-trigger="focus"
                     data-html="true"
-                    title="<a href='{{route('Anime',['anime'=>$item->judul_alternatif])}}' class='text-dark'>{{$item->judul}} <i class='fa fa-external-link'></i></a>" 
+                    title="<a href='{{route('Anime',['anime'=>$item->judul_alternatif])}}' class='text-dark'>{!! $item->judul !!} <i class='fa fa-external-link'></i></a>" 
                     data-content="
                     <b>Rating</b> :
                         @for ($i = 1; $i <= 5; $i++)
@@ -82,7 +82,7 @@
                 @else
                 <div class="card h-100">
                     <div class="card-body text-center text-dark">
-                        {{$item->judul}}
+                        {!! $item->judul !!}
                     </div>
                 </div>
                 @endif
@@ -101,7 +101,7 @@
                     data-toggle="popover" 
                     data-trigger="focus"
                     data-html="true"
-                    title="<a href='{{route('VideoAnime',['anime'=>$item->judul_alternatif_anime,'judul'=>$item->judul_alternatif])}}' class='text-dark'>{{$item->judul}} <i class='fa fa-external-link'></i></a>" 
+                    title="<a href='{{route('VideoAnime',['anime'=>$item->judul_alternatif_anime,'judul'=>$item->judul_alternatif])}}' class='text-dark'>{!! $item->judul !!} <i class='fa fa-external-link'></i></a>" 
                     data-content="
                     <b>Anime</b> : {{$item->judul_anime}} <br>
                     <b>Rating</b> :
@@ -126,7 +126,7 @@
                 @else
                 <div class="card h-100">
                     <div class="card-body text-center text-dark">
-                        {{$item->judul_anime}} - {{$item->judul}}
+                        {{$item->judul_anime}} - {!! $item->judul !!}
                     </div>
                 </div>
                 @endif
@@ -152,7 +152,7 @@
                         data-toggle="popover" 
                         data-trigger="focus"
                         data-html="true"
-                        title="<a href='{{route('VideoAnime',['anime'=>$item->judul_alternatif_anime,'judul'=>$item->judul_alternatif])}}' class='text-dark'>{{$item->judul}} <i class='fa fa-external-link'></i></a>" 
+                        title="<a href='{{route('VideoAnime',['anime'=>$item->judul_alternatif_anime,'judul'=>$item->judul_alternatif])}}' class='text-dark'>{!! $item->judul !!} <i class='fa fa-external-link'></i></a>" 
                         data-content="
                         <b>Anime</b> : {{$item->judul_anime}} <br>
                         <b>Rating</b> :
@@ -177,7 +177,7 @@
                     @else
                     <div class="card h-100">
                         <div class="card-body text-center text-dark">
-                            {{$item->judul_anime}} - {{$item->judul}}
+                            {{$item->judul_anime}} - {!! $item->judul !!}
                         </div>
                     </div>
                     @endif
@@ -205,7 +205,7 @@
                         data-toggle="popover" 
                         data-trigger="focus"
                         data-html="true"
-                        title="<a href='{{route('Anime',['anime'=>$item->judul_alternatif])}}' class='text-dark'>{{$item->judul}} <i class='fa fa-external-link'></i></a>" 
+                        title="<a href='{{route('Anime',['anime'=>$item->judul_alternatif])}}' class='text-dark'>{!! $item->judul !!} <i class='fa fa-external-link'></i></a>" 
                         data-content="
                         <b>Rating</b> :
                             @for ($i = 1; $i <= 5; $i++)
@@ -229,7 +229,7 @@
                     @else
                     <div class="card h-100">
                         <div class="card-body text-center text-dark">
-                            {{$item->judul}}
+                            {!! $item->judul !!}
                         </div>
                     </div>
                     @endif
