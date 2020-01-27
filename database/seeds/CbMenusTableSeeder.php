@@ -83,6 +83,17 @@ class CbMenusTableSeeder extends Seeder
                 'cb_modules_id' => NULL,
                 'parent_cb_menus_id' => NULL,
             ),
+            6 => 
+            array (
+                'id' => 11,
+                'name' => 'Link Anime',
+                'icon' => NULL,
+                'path' => NULL,
+                'type' => 'module',
+                'sort_number' => 0,
+                'cb_modules_id' => 10,
+                'parent_cb_menus_id' => NULL,
+            ),
         ));
         
         

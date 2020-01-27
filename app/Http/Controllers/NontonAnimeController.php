@@ -171,6 +171,7 @@ class NontonAnimeController extends Controller
             ->join('anime','anime_genre.id_anime','=','anime.id')
             ->whereIn('id_genre',$where)
             ->orderBy('anime.voter','ASC')
+            ->groupBy('anime.id')
             ->limit(5)
             ->get();
         $genre=null;
