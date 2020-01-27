@@ -84,7 +84,7 @@
                 </div>
             </div>
         </div>
-        <div class="card mt-2">
+        <div class="card mt-2" style="max-height:300px;overflow-y: scroll;">
             <div class="card-body">
                 <h4 class="card-title">Episode</h4>
                 <ul class="list-unstyled">
@@ -96,7 +96,7 @@
                 </ul>
             </div>
         </div>
-        <div class="card mt-2">
+        <div class="card mt-2" style="max-height:300px;overflow-y: scroll;">
             <div class="card-body">
                 <h4 class="card-title">Movie</h4>
                 <ul class="list-unstyled">

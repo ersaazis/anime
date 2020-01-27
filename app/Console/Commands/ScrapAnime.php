@@ -16,7 +16,7 @@ class ScrapAnime extends Command
      *
      * @var string
      */
-    protected $signature = 'scrap:anime {url}';
+    protected $signature = 'scrap:anime';
 
     /**
      * The console command description.
@@ -40,10 +40,10 @@ class ScrapAnime extends Command
      *
      * @return mixed
      */
-    public function handle()
+    private function scrap($url)
     {
         // CURL Anime
-        $urlAnime = $this->argument('url');
+        $urlAnime = $url;
         $reqAnime = new CurlHelper($urlAnime, "GET");
         $reqAnime->headers([
             "Accept"=>"application/json"
@@ -70,14 +70,22 @@ class ScrapAnime extends Command
             $fotoAnime = HTMLDomParser::str_get_html($responseAnime)->find('img.attachment-img.poster',0)->src;
             $fotoAnimeExt=explode('.',$fotoAnime);
             $fotoAnimeExt=end($fotoAnimeExt);
-            $fotoAnimeFileName=md5(time()).'.'.$fotoAnimeExt;
-            Storage::disk('scrap')->put($fotoAnimeFileName, file_get_contents($fotoAnime));
+            $fotoAnimeFileName=md5($fotoAnime).'.'.$fotoAnimeExt;
+            $cekFotoAnime= DB::table('anime')->where('foto','like','%'.$fotoAnimeFileName)->first('foto');
+            $cekVideoAnime= DB::table('video')->where('foto','like','%'.$fotoAnimeFileName)->first('foto');
+            if(!$cekFotoAnime OR !$cekVideoAnime){
+                Storage::disk('scrap')->put($fotoAnimeFileName, file_get_contents($fotoAnime));
+                $anime['foto']='storage/files/'.date('Y/m/d').'/'.$fotoAnimeFileName;
+            }
+            else if($cekFotoAnime)
+                $anime['foto']=$cekFotoAnime->foto;
+            else if($cekVideoAnime)
+                $anime['foto']=$cekVideoAnime->foto;
             
             // Deskripsi Anime
             $deskripsiAnime = HTMLDomParser::str_get_html($responseAnime)->find('div.attachment-text',0)->plaintext;
 
             // Data Anime Lengkap
-            $anime['foto']='storage/files/'.date('Y/m/d').'/'.$fotoAnimeFileName;
             $anime['judul_alternatif']=Str::slug($keteranganAnime[1]->plaintext);
             $anime['status']=strtolower($keteranganAnime[9]->plaintext);
             $anime['total_episode']=($keteranganAnime[11]->plaintext == 'Unknown')?NULL:$keteranganAnime[11]->plaintext;
@@ -93,7 +101,7 @@ class ScrapAnime extends Command
                 $idGenre=DB::table('genre')->where('nama',$item)->first('id')->id;
                 DB::table('anime_genre')->insert(['id_anime' => $id_anime,'id_genre' => $idGenre]);
             }
-            // $this->info('+ [ ANIME ] : '.$anime['judul']);
+            $this->info('+ [ ANIME ] : '.$anime['judul']);
         }
 
         // LIST EPISODE ANIME
@@ -119,8 +127,17 @@ class ScrapAnime extends Command
                 $fotoVideoAnime = HTMLDomParser::str_get_html($responseVideo)->find('img.attachment-img.poster',0)->src;
                 $fotoVideoAnimeExt=explode('.',$fotoVideoAnime);
                 $fotoVideoAnimeExt=end($fotoVideoAnimeExt);
-                $fotoVideoAnimeFileName=md5(time()).'.'.$fotoVideoAnimeExt;
-                Storage::disk('scrap')->put($fotoVideoAnimeFileName, file_get_contents($fotoVideoAnime));
+                $fotoVideoAnimeFileName=md5($fotoVideoAnime).'.'.$fotoVideoAnimeExt;
+                $cekFotoAnime= DB::table('anime')->where('foto','like','%'.$fotoVideoAnimeFileName)->first('foto');
+                $cekVideoAnime= DB::table('video')->where('foto','like','%'.$fotoVideoAnimeFileName)->first('foto');
+                if(!$cekFotoAnime OR !$cekVideoAnime){
+                    Storage::disk('scrap')->put($fotoVideoAnimeFileName, file_get_contents($fotoVideoAnime));
+                    $anime['foto']='storage/files/'.date('Y/m/d').'/'.$fotoVideoAnimeFileName;
+                }
+                else if($cekFotoAnime)
+                    $anime['foto']=$cekFotoAnime->foto;
+                else if($cekVideoAnime)
+                    $anime['foto']=$cekVideoAnime->foto;
 
                 // Deskripsi Episode Video Anime
                 $deskripsiVideoAnime = HTMLDomParser::str_get_html($responseVideo)->find('div.attachment-text',0)->plaintext;
@@ -176,8 +193,17 @@ class ScrapAnime extends Command
                 $fotoVideoAnime = HTMLDomParser::str_get_html($responseVideo)->find('img.attachment-img.poster',0)->src;
                 $fotoVideoAnimeExt=explode('.',$fotoVideoAnime);
                 $fotoVideoAnimeExt=end($fotoVideoAnimeExt);
-                $fotoVideoAnimeFileName=md5(time()).'.'.$fotoVideoAnimeExt;
-                Storage::disk('scrap')->put($fotoVideoAnimeFileName, file_get_contents($fotoVideoAnime));
+                $fotoVideoAnimeFileName=md5($fotoVideoAnime).'.'.$fotoVideoAnimeExt;
+                $cekFotoAnime= DB::table('anime')->where('foto','like','%'.$fotoVideoAnimeFileName)->first('foto');
+                $cekVideoAnime= DB::table('video')->where('foto','like','%'.$fotoVideoAnimeFileName)->first('foto');
+                if(!$cekFotoAnime OR !$cekVideoAnime){
+                    Storage::disk('scrap')->put($fotoVideoAnimeFileName, file_get_contents($fotoVideoAnime));
+                    $anime['foto']='storage/files/'.date('Y/m/d').'/'.$fotoVideoAnimeFileName;
+                }
+                else if($cekFotoAnime)
+                    $anime['foto']=$cekFotoAnime->foto;
+                else if($cekVideoAnime)
+                    $anime['foto']=$cekVideoAnime->foto;
 
                 // Deskripsi Movie Video Anime
                 $deskripsiVideoAnime = HTMLDomParser::str_get_html($responseVideo)->find('div.attachment-text',0)->plaintext;
@@ -207,7 +233,20 @@ class ScrapAnime extends Command
                 $episode--;
             // else
             //     $this->info('   - [ SKIP Movie ] : '.$item->plaintext);
-            $bar->finish();
         }
+        $bar->finish();
+        $this->info('');
+    }
+    public function handle(){
+        $linkAnime=DB::table('link_anime')->where('auto_update',1)->get();
+        try{
+            foreach($linkAnime as $item){
+                $this->scrap($item->url);
+            }
+        } catch (\Throwable $e) {
+            $this->warn("\n============= [ Server ANIME ERROR ] ============");
+            exit();
+        }
+        $this->info('=============== [ Selesai ] =============== ');
     }
 }
