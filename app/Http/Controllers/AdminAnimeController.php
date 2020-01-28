@@ -46,7 +46,7 @@ class AdminAnimeController extends CBController {
 			$genres=AnimeGenre::findAllByIdAnime($row);
 			$genre=null;
 			foreach($genres as $g){
-				$genre.=Genre::findById($g->id_genre)->getNama().",";
+				$genre.=Genre::findById($g->id_genre)->getNama().", ";
 			}
 			return $genre;
 		});
