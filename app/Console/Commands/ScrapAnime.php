@@ -74,7 +74,7 @@ class ScrapAnime extends Command
             $cekFotoAnime= DB::table('anime')->where('foto','like','%'.$fotoAnimeFileName)->first('foto');
             $cekVideoAnime= DB::table('video')->where('foto','like','%'.$fotoAnimeFileName)->first('foto');
             if(!$cekFotoAnime OR !$cekVideoAnime){
-                Storage::disk('scrap')->put($fotoAnimeFileName, file_get_contents($fotoAnime));
+                Storage::disk('scrap')->put(date('Y/m/d').'/'.$fotoAnimeFileName, file_get_contents($fotoAnime));
                 $anime['foto']='storage/files/'.date('Y/m/d').'/'.$fotoAnimeFileName;
             }
             else if($cekFotoAnime)
@@ -97,7 +97,7 @@ class ScrapAnime extends Command
             $genre=explode(' ',$keteranganAnime[17]->plaintext);
             $idGenre=array();
             foreach($genre as $item){
-                DB::table('genre')->updateOrInsert(['nama' => $item]);
+                DB::table('genre')->updateOrInsert(['nama' => $item,'nama_alternatif' => Str::slug($item)]);
                 $idGenre=DB::table('genre')->where('nama',$item)->first('id')->id;
                 DB::table('anime_genre')->insert(['id_anime' => $id_anime,'id_genre' => $idGenre]);
             }
@@ -131,7 +131,7 @@ class ScrapAnime extends Command
                 $cekFotoAnime= DB::table('anime')->where('foto','like','%'.$fotoVideoAnimeFileName)->first('foto');
                 $cekVideoAnime= DB::table('video')->where('foto','like','%'.$fotoVideoAnimeFileName)->first('foto');
                 if(!$cekFotoAnime OR !$cekVideoAnime){
-                    Storage::disk('scrap')->put($fotoVideoAnimeFileName, file_get_contents($fotoVideoAnime));
+                    Storage::disk('scrap')->put(date('Y/m/d').'/'.$fotoVideoAnimeFileName, file_get_contents($fotoVideoAnime));
                     $anime['foto']='storage/files/'.date('Y/m/d').'/'.$fotoVideoAnimeFileName;
                 }
                 else if($cekFotoAnime)
@@ -197,7 +197,7 @@ class ScrapAnime extends Command
                 $cekFotoAnime= DB::table('anime')->where('foto','like','%'.$fotoVideoAnimeFileName)->first('foto');
                 $cekVideoAnime= DB::table('video')->where('foto','like','%'.$fotoVideoAnimeFileName)->first('foto');
                 if(!$cekFotoAnime OR !$cekVideoAnime){
-                    Storage::disk('scrap')->put($fotoVideoAnimeFileName, file_get_contents($fotoVideoAnime));
+                    Storage::disk('scrap')->put(date('Y/m/d').'/'.$fotoVideoAnimeFileName, file_get_contents($fotoVideoAnime));
                     $anime['foto']='storage/files/'.date('Y/m/d').'/'.$fotoVideoAnimeFileName;
                 }
                 else if($cekFotoAnime)
@@ -239,13 +239,12 @@ class ScrapAnime extends Command
     }
     public function handle(){
         $linkAnime=DB::table('link_anime')->where('auto_update',1)->get();
-        try{
-            foreach($linkAnime as $item){
+        foreach($linkAnime as $item){
+            try{
                 $this->scrap($item->url);
+            } catch (\Throwable $e) {
+                $this->warn("\n!!! [ Anime ] ".$item->url);
             }
-        } catch (\Throwable $e) {
-            $this->warn("\n============= [ Server ANIME ERROR ] ============");
-            exit();
         }
         $this->info('=============== [ Selesai ] =============== ');
     }

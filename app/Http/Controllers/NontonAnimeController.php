@@ -89,7 +89,7 @@ class NontonAnimeController extends Controller
                 'anime.hari_tayang',
                 'anime.status'
             )
-            ->orderBy('video.created_at','DESC')
+            ->orderBy('video.id','DESC')
             ->limit(8)
             ->get();
         $this->data['videoTrending']=$videoTrending;
@@ -98,7 +98,7 @@ class NontonAnimeController extends Controller
         return view('index',$this->data);
     }
     public function semuaAnime(){
-        $anime=DB::table('anime')->orderBy('created_at','DESC')->simplePaginate(20);
+        $anime=DB::table('anime')->orderBy('id','DESC')->simplePaginate(20);
         $this->data['anime']=$anime;
         return view('semuaAnime',$this->data);
     }
@@ -116,7 +116,7 @@ class NontonAnimeController extends Controller
             'anime.hari_tayang',
             'anime.status'
         )
-        ->orderBy('video.created_at','DESC')
+        ->orderBy('video.id','DESC')
         ->simplePaginate(20);
         $this->data['video']=$video;
         return view('semuaVideo',$this->data);
@@ -225,18 +225,18 @@ class NontonAnimeController extends Controller
     }
     public function jadwal(){
         $anime=array();
-        $anime['senin']=DB::table('anime')->where('status','ongoing')->where('hari_tayang','senin')->orderBy('created_at','DESC')->get();
-        $anime['selasa']=DB::table('anime')->where('status','ongoing')->where('hari_tayang','selasa')->orderBy('created_at','DESC')->get();
-        $anime['rabu']=DB::table('anime')->where('status','ongoing')->where('hari_tayang','rabu')->orderBy('created_at','DESC')->get();
-        $anime['kamis']=DB::table('anime')->where('status','ongoing')->where('hari_tayang','kamis')->orderBy('created_at','DESC')->get();
-        $anime['jumat']=DB::table('anime')->where('status','ongoing')->where('hari_tayang','jumat')->orderBy('created_at','DESC')->get();
-        $anime['sabtu']=DB::table('anime')->where('status','ongoing')->where('hari_tayang','sabtu')->orderBy('created_at','DESC')->get();
-        $anime['minggu']=DB::table('anime')->where('status','ongoing')->where('hari_tayang','minggu')->orderBy('created_at','DESC')->get();
+        $anime['senin']=DB::table('anime')->where('status','ongoing')->where('hari_tayang','senin')->orderBy('id','DESC')->get();
+        $anime['selasa']=DB::table('anime')->where('status','ongoing')->where('hari_tayang','selasa')->orderBy('id','DESC')->get();
+        $anime['rabu']=DB::table('anime')->where('status','ongoing')->where('hari_tayang','rabu')->orderBy('id','DESC')->get();
+        $anime['kamis']=DB::table('anime')->where('status','ongoing')->where('hari_tayang','kamis')->orderBy('id','DESC')->get();
+        $anime['jumat']=DB::table('anime')->where('status','ongoing')->where('hari_tayang','jumat')->orderBy('id','DESC')->get();
+        $anime['sabtu']=DB::table('anime')->where('status','ongoing')->where('hari_tayang','sabtu')->orderBy('id','DESC')->get();
+        $anime['minggu']=DB::table('anime')->where('status','ongoing')->where('hari_tayang','minggu')->orderBy('id','DESC')->get();
         $this->data['anime']=$anime;
         return view('jadwalAnime',$this->data);
     }
     public function cari(Request $request){
-        $anime=DB::table('anime')->where('judul','like','%'.$request->input('cari').'%')->simplePaginate(20);
+        $anime=DB::table('anime')->where('judul','like','%'.str_replace(' ','%',$request->input('cari')).'%')->orderBy('id','DESC')->simplePaginate(20);
         $this->data['anime']=$anime;
         $this->data['cari']=$request->input('cari');
         return view('cariAnime',$this->data);

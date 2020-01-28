@@ -57,7 +57,7 @@ return [
 
         'scrap' => [
             'driver' => 'local',
-            'root' => public_path('storage/files/'.date('Y/m/d').'/'),
+            'root' => public_path('storage/files/'),
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],
