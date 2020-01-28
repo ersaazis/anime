@@ -31,7 +31,7 @@ class NontonAnimeController extends Controller
         );
         $hariN = date('w');
         $rilisHariIni=DB::table('anime')->where('hari_tayang',$hari[$hariN])->where('status','ongoing')->get();
-        $tags=Genre::all();
+        $tags=DB::table('genre')->orderBy('nama')->get();
         $animeFavorit=DB::table('anime')->orderBy('voter','DESC')->limit(8)->get();
         $karakterFavorit=DB::table('karakter')->orderBy('voter','DESC')->limit(8)->get();
 
