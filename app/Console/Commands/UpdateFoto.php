@@ -79,9 +79,6 @@ class UpdateFoto extends Command
             $bar = $this->output->createProgressBar($episode);
             $bar->start();
             foreach($listEpisodeAnime as $item){
-                // Cek Episode Video Anime
-                $cekVideo= DB::table('video')->where('id_anime',$id_anime)->where('judul',str_replace($anime['judul'],'',$item->plaintext))->doesntExist();
-                if($cekVideo){
                     // CURL Episode Video Anime
                     $urlvideo = $item->href;
                     $reqVideo = new CurlHelper($urlvideo, "GET");
@@ -97,7 +94,6 @@ class UpdateFoto extends Command
                     $fotoVideoAnimeExt=end($fotoVideoAnimeExt);
                     $fotoVideoAnimeFileName=md5($fotoVideoAnime).'.'.$fotoVideoAnimeExt;
                     DB::table('video')->where('id_anime',$id_anime)->where('judul',str_replace($anime['judul'],'',$item->plaintext))->update(['foto'=>$folder.'/'.$fotoVideoAnimeFileName]);
-                }
                 $bar->advance();
             }
             $bar->finish();
@@ -110,9 +106,6 @@ class UpdateFoto extends Command
             $bar = $this->output->createProgressBar($episode);
             $bar->start();
             foreach($listMovieAnime as $item){
-                // Cek Movie Video Anime
-                $cekVideo= DB::table('video')->where('id_anime',$id_anime)->where('judul',$item->plaintext)->doesntExist();
-                if($cekVideo){
                     // CURL Movie Video Anime
                     $urlvideo = $item->href;
                     $reqVideo = new CurlHelper($urlvideo, "GET");
@@ -128,7 +121,6 @@ class UpdateFoto extends Command
                     $fotoVideoAnimeExt=end($fotoVideoAnimeExt);
                     $fotoVideoAnimeFileName=md5($fotoVideoAnime).'.'.$fotoVideoAnimeExt;
                     DB::table('video')->where('id_anime',$id_anime)->where('judul',str_replace($anime['judul'],'',$item->plaintext))->update(['foto'=>$folder.'/'.$fotoVideoAnimeFileName]);
-                }
                 $bar->advance();
             }
             $bar->finish();
