@@ -61,10 +61,11 @@ class UpdateFoto extends Command
         $anime['judul']=$keteranganAnime[1]->find('a',0)->plaintext;
 
         // Cek Data Anime
-        $idAnime= DB::table('anime')->where('judul',$keteranganAnime[1]->find('a',0)->plaintext)->first('id');
+        $idAnime= DB::table('anime')->where('judul',$keteranganAnime[1]->find('a',0)->plaintext)->first();
+        // dd($idAnime);
         if($idAnime){
             $id_anime=$idAnime->id;
-            if($idAnime->foto != ""){
+            if($idAnime->foto == ""){
                 $this->info('+ [ UPDATE ANIME ] : '.$keteranganAnime[1]->find('a',0)->plaintext);
                 // Foto Anime
                 $fotoAnime = HTMLDomParser::str_get_html($responseAnime)->find('img.attachment-img.poster',0)->src;
@@ -82,7 +83,7 @@ class UpdateFoto extends Command
             foreach($listEpisodeAnime as $item){
                 $cek=DB::table('video')->where('id_anime',$id_anime)->where('judul',str_replace($anime['judul'],'',$item->plaintext))->first();
                 if($cek){
-                    if($cek->foto != ''){
+                    if($cek->foto == ''){
                     // CURL Episode Video Anime
                     $urlvideo = $item->href;
                     $reqVideo = new CurlHelper($urlvideo, "GET");
@@ -114,7 +115,7 @@ class UpdateFoto extends Command
             foreach($listMovieAnime as $item){
                 $cek=DB::table('video')->where('id_anime',$id_anime)->where('judul',str_replace($anime['judul'],'',$item->plaintext))->first();
                 if($cek){
-                    if($cek->foto != ''){
+                    if($cek->foto == ''){
                     // CURL Movie Video Anime
                     $urlvideo = $item->href;
                     $reqVideo = new CurlHelper($urlvideo, "GET");
@@ -142,11 +143,11 @@ class UpdateFoto extends Command
     public function handle(){
         $linkAnime=DB::table('link_anime')->where('auto_update',1)->get();
         foreach($linkAnime as $item){
-            try{
+            // try{
                 $this->scrap($item->url);
-            } catch (\Throwable $e) {
-                $this->warn("\n!!! [ Anime ] ".$item->url);
-            }
+            // } catch (\Throwable $e) {
+            //     $this->warn("\n!!! [ Anime ] ".$item->url);
+            // }
         }
         $this->info('=============== [ Selesai ] =============== ');
     }
