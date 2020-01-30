@@ -61,19 +61,17 @@ class UpdateFoto extends Command
         $anime['judul']=$keteranganAnime[1]->find('a',0)->plaintext;
 
         // Cek Data Anime
-        $idAnime= DB::table('anime')->where('judul',$keteranganAnime[1]->find('a',0)->plaintext)->first();
+        $idAnime= DB::table('anime')->where('judul',$keteranganAnime[1]->find('a',0)->plaintext)->where('foto','')->first();
         // dd($idAnime);
         if($idAnime){
             $id_anime=$idAnime->id;
-            if($idAnime->foto == ""){
-                $this->info('+ [ UPDATE ANIME ] : '.$keteranganAnime[1]->find('a',0)->plaintext);
-                // Foto Anime
-                $fotoAnime = HTMLDomParser::str_get_html($responseAnime)->find('img.attachment-img.poster',0)->src;
-                $fotoAnimeExt=explode('.',$fotoAnime);
-                $fotoAnimeExt=end($fotoAnimeExt);
-                $fotoAnimeFileName=md5($fotoAnime).'.'.$fotoAnimeExt;
-                $idAnime= DB::table('anime')->where('judul',$keteranganAnime[1]->find('a',0)->plaintext)->update(['foto'=>$folder.'/'.$fotoAnimeFileName]);
-            }
+            $this->info('+ [ UPDATE ANIME ] : '.$keteranganAnime[1]->find('a',0)->plaintext);
+            // Foto Anime
+            $fotoAnime = HTMLDomParser::str_get_html($responseAnime)->find('img.attachment-img.poster',0)->src;
+            $fotoAnimeExt=explode('.',$fotoAnime);
+            $fotoAnimeExt=end($fotoAnimeExt);
+            $fotoAnimeFileName=md5($fotoAnime).'.'.$fotoAnimeExt;
+            $idAnime= DB::table('anime')->where('judul',$keteranganAnime[1]->find('a',0)->plaintext)->update(['foto'=>$folder.'/'.$fotoAnimeFileName]);
             // LIST EPISODE ANIME
             $listEpisodeAnime = HTMLDomParser::str_get_html($responseAnime)->find('div.box-body.episode_list > table#table-episode > tbody > tr > td > a');
             $episode=count($listEpisodeAnime);
@@ -81,9 +79,8 @@ class UpdateFoto extends Command
             $bar = $this->output->createProgressBar($episode);
             $bar->start();
             foreach($listEpisodeAnime as $item){
-                $cek=DB::table('video')->where('id_anime',$id_anime)->where('judul',str_replace($anime['judul'],'',$item->plaintext))->first();
+                $cek=DB::table('video')->where('id_anime',$id_anime)->where('judul',str_replace($anime['judul'],'',$item->plaintext))->where('foto','')->first();
                 if($cek){
-                    if($cek->foto == ''){
                     // CURL Episode Video Anime
                     $urlvideo = $item->href;
                     $reqVideo = new CurlHelper($urlvideo, "GET");
@@ -99,7 +96,6 @@ class UpdateFoto extends Command
                     $fotoVideoAnimeExt=end($fotoVideoAnimeExt);
                     $fotoVideoAnimeFileName=md5($fotoVideoAnime).'.'.$fotoVideoAnimeExt;
                     DB::table('video')->where('id_anime',$id_anime)->where('judul',str_replace($anime['judul'],'',$item->plaintext))->update(['foto'=>$folder.'/'.$fotoVideoAnimeFileName]);
-                    }
                 }
                 $bar->advance();
             }
@@ -113,9 +109,8 @@ class UpdateFoto extends Command
             $bar = $this->output->createProgressBar($episode);
             $bar->start();
             foreach($listMovieAnime as $item){
-                $cek=DB::table('video')->where('id_anime',$id_anime)->where('judul',str_replace($anime['judul'],'',$item->plaintext))->first();
+                $cek=DB::table('video')->where('id_anime',$id_anime)->where('judul',str_replace($anime['judul'],'',$item->plaintext))->where('foto','')->first();
                 if($cek){
-                    if($cek->foto == ''){
                     // CURL Movie Video Anime
                     $urlvideo = $item->href;
                     $reqVideo = new CurlHelper($urlvideo, "GET");
@@ -131,7 +126,6 @@ class UpdateFoto extends Command
                     $fotoVideoAnimeExt=end($fotoVideoAnimeExt);
                     $fotoVideoAnimeFileName=md5($fotoVideoAnime).'.'.$fotoVideoAnimeExt;
                     DB::table('video')->where('id_anime',$id_anime)->where('judul',str_replace($anime['judul'],'',$item->plaintext))->update(['foto'=>$folder.'/'.$fotoVideoAnimeFileName]);
-                    }
                 }
                 $bar->advance();
             }
