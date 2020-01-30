@@ -61,17 +61,19 @@ class UpdateFoto extends Command
         $anime['judul']=$keteranganAnime[1]->find('a',0)->plaintext;
 
         // Cek Data Anime
-        $idAnime= DB::table('anime')->where('judul',$keteranganAnime[1]->find('a',0)->plaintext)->where('foto','')->first();
+        $idAnime= DB::table('anime')->where('judul',$keteranganAnime[1]->find('a',0)->plaintext)->first();
         // dd($idAnime);
         if($idAnime){
             $id_anime=$idAnime->id;
-            $this->info('+ [ UPDATE ANIME ] : '.$keteranganAnime[1]->find('a',0)->plaintext);
-            // Foto Anime
-            $fotoAnime = HTMLDomParser::str_get_html($responseAnime)->find('img.attachment-img.poster',0)->src;
-            $fotoAnimeExt=explode('.',$fotoAnime);
-            $fotoAnimeExt=end($fotoAnimeExt);
-            $fotoAnimeFileName=md5($fotoAnime).'.'.$fotoAnimeExt;
-            $idAnime= DB::table('anime')->where('judul',$keteranganAnime[1]->find('a',0)->plaintext)->update(['foto'=>$folder.'/'.$fotoAnimeFileName]);
+            if($idAnime->foto == ""){
+                $this->info('+ [ UPDATE ANIME ] : '.$keteranganAnime[1]->find('a',0)->plaintext);
+                // Foto Anime
+                $fotoAnime = HTMLDomParser::str_get_html($responseAnime)->find('img.attachment-img.poster',0)->src;
+                $fotoAnimeExt=explode('.',$fotoAnime);
+                $fotoAnimeExt=end($fotoAnimeExt);
+                $fotoAnimeFileName=md5($fotoAnime).'.'.$fotoAnimeExt;
+                $idAnime= DB::table('anime')->where('judul',$keteranganAnime[1]->find('a',0)->plaintext)->update(['foto'=>$folder.'/'.$fotoAnimeFileName]);
+            }
             // LIST EPISODE ANIME
             $listEpisodeAnime = HTMLDomParser::str_get_html($responseAnime)->find('div.box-body.episode_list > table#table-episode > tbody > tr > td > a');
             $episode=count($listEpisodeAnime);
