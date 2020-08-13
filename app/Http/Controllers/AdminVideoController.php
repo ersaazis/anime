@@ -1,6 +1,6 @@
 <?php namespace App\Http\Controllers;
 
-use crocodicstudio\crudbooster\controllers\CBController;
+use ersaazis\cb\controllers\CBController;
 use Illuminate\Support\Str;
 
 class AdminVideoController extends CBController {

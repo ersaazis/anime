@@ -1,6 +1,6 @@
 <?php namespace App\Http\Controllers;
 
-use crocodicstudio\crudbooster\controllers\CBController;
+use ersaazis\cb\controllers\CBController;
 
 class AdminKarakterAnimeController extends CBController {
 

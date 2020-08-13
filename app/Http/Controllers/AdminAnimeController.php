@@ -1,6 +1,6 @@
 <?php namespace App\Http\Controllers;
 
-use crocodicstudio\crudbooster\controllers\CBController;
+use ersaazis\cb\controllers\CBController;
 use App\Models\AnimeGenre;
 use App\Models\Genre;
 use Illuminate\Support\Str;
