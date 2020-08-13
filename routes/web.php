@@ -20,7 +20,7 @@ Route::get('/genre/{genre}', 'NontonAnimeController@genre')->name('Genre');
 Route::get('/jadwal-rilis', 'NontonAnimeController@jadwal')->name('JadwalRilis');
 Route::get('/cari', 'NontonAnimeController@cari')->name('CariAnime');
 
-Route::middleware(['web', \crocodicstudio\crudbooster\middlewares\CBBackend::class])->group(function () {
+Route::middleware(['web', \ersaazis\cb\middlewares\CBBackend::class])->group(function () {
     Route::get('/lite', 'NontonAnimeController@lite')->name('LiteMode');
     Route::get('/rating/{id_anime}/{rating}', 'NontonAnimeController@rating')->name('RatingAnime');
     Route::get('/report/{id_video}', 'NontonAnimeController@reportVideo')->name('ReportVideo');
