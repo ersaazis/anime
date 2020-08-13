@@ -48,7 +48,7 @@ class ScrapAnime extends Command
         $reqAnime->headers([
             "Accept"=>"application/json"
         ]);
-        $reqAnime->userAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36');
+        $reqAnime->userAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36');
         $responseAnime = $reqAnime->send();
         
         // Data Anime Lainya
@@ -120,7 +120,7 @@ class ScrapAnime extends Command
                 $reqVideo->headers([
                     "Accept"=>"application/json"
                 ]);
-                $reqAnime->userAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36');
+                $reqAnime->userAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36');
                 $responseVideo = $reqVideo->send();
                 
                 // Foto Episode Video Anime
@@ -186,7 +186,7 @@ class ScrapAnime extends Command
                 $reqVideo->headers([
                     "Accept"=>"application/json"
                 ]);
-                $reqAnime->userAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36');
+                $reqAnime->userAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36');
                 $responseVideo = $reqVideo->send();
                 
                 // Foto Movie Video Anime
