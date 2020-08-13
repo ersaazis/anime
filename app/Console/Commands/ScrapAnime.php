@@ -42,6 +42,8 @@ class ScrapAnime extends Command
      */
     private function scrap($url)
     {
+        $options  = array('http' => array('user_agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36'));
+        $context  = stream_context_create($options);
         // CURL Anime
         $urlAnime = $url;
         $reqAnime = new CurlHelper($urlAnime, "GET");
@@ -74,7 +76,7 @@ class ScrapAnime extends Command
             $cekFotoAnime= DB::table('anime')->where('foto','like','%'.$fotoAnimeFileName)->first('foto');
             $cekVideoAnime= DB::table('video')->where('foto','like','%'.$fotoAnimeFileName)->first('foto');
             if(!$cekFotoAnime OR !$cekVideoAnime){
-                Storage::disk('scrap')->put(date('Y/m/d').'/'.$fotoAnimeFileName, file_get_contents($fotoAnime));
+                Storage::disk('scrap')->put(date('Y/m/d').'/'.$fotoAnimeFileName, file_get_contents($fotoAnime,false,$context));
                 $anime['foto']='storage/files/'.date('Y/m/d').'/'.$fotoAnimeFileName;
             }
             else if($cekFotoAnime)
@@ -131,7 +133,7 @@ class ScrapAnime extends Command
                 $cekFotoAnime= DB::table('anime')->where('foto','like','%'.$fotoVideoAnimeFileName)->first('foto');
                 $cekVideoAnime= DB::table('video')->where('foto','like','%'.$fotoVideoAnimeFileName)->first('foto');
                 if(!$cekFotoAnime OR !$cekVideoAnime){
-                    Storage::disk('scrap')->put(date('Y/m/d').'/'.$fotoVideoAnimeFileName, file_get_contents($fotoVideoAnime));
+                    Storage::disk('scrap')->put(date('Y/m/d').'/'.$fotoVideoAnimeFileName, file_get_contents($fotoVideoAnime,false,$context));
                     $anime['foto']='storage/files/'.date('Y/m/d').'/'.$fotoVideoAnimeFileName;
                 }
                 else if($cekFotoAnime)
@@ -197,7 +199,7 @@ class ScrapAnime extends Command
                 $cekFotoAnime= DB::table('anime')->where('foto','like','%'.$fotoVideoAnimeFileName)->first('foto');
                 $cekVideoAnime= DB::table('video')->where('foto','like','%'.$fotoVideoAnimeFileName)->first('foto');
                 if(!$cekFotoAnime OR !$cekVideoAnime){
-                    Storage::disk('scrap')->put(date('Y/m/d').'/'.$fotoVideoAnimeFileName, file_get_contents($fotoVideoAnime));
+                    Storage::disk('scrap')->put(date('Y/m/d').'/'.$fotoVideoAnimeFileName, file_get_contents($fotoVideoAnime,false,$context));
                     $anime['foto']='storage/files/'.date('Y/m/d').'/'.$fotoVideoAnimeFileName;
                 }
                 else if($cekFotoAnime)
