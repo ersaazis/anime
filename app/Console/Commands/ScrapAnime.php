@@ -42,15 +42,14 @@ class ScrapAnime extends Command
      */
     private function scrap($url)
     {
-        $options  = array('http' => array('user_agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36'));
-        $context  = stream_context_create($options);
+        $UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36";
         // CURL Anime
         $urlAnime = $url;
         $reqAnime = new CurlHelper($urlAnime, "GET");
         $reqAnime->headers([
             "Accept"=>"application/json"
         ]);
-        $reqAnime->userAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36');
+        $reqAnime->userAgent($UA);
         $responseAnime = $reqAnime->send();
         
         // Data Anime Lainya
@@ -76,7 +75,12 @@ class ScrapAnime extends Command
             $cekFotoAnime= DB::table('anime')->where('foto','like','%'.$fotoAnimeFileName)->first('foto');
             $cekVideoAnime= DB::table('video')->where('foto','like','%'.$fotoAnimeFileName)->first('foto');
             if(!$cekFotoAnime OR !$cekVideoAnime){
-                Storage::disk('scrap')->put(date('Y/m/d').'/'.$fotoAnimeFileName, file_get_contents($fotoAnime,false,$context));
+                $reqFotoAnime = new CurlHelper($fotoAnime, "GET");
+                $reqFotoAnime->headers([
+                "Accept"=>"application/json"
+                ]);
+                $reqFotoAnime->userAgent($UA);
+                Storage::disk('scrap')->put(date('Y/m/d').'/'.$fotoAnimeFileName, $reqFotoAnime->send());
                 $anime['foto']='storage/files/'.date('Y/m/d').'/'.$fotoAnimeFileName;
             }
             else if($cekFotoAnime)
@@ -122,7 +126,7 @@ class ScrapAnime extends Command
                 $reqVideo->headers([
                     "Accept"=>"application/json"
                 ]);
-                $reqAnime->userAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36');
+                $reqAnime->userAgent($UA);
                 $responseVideo = $reqVideo->send();
                 
                 // Foto Episode Video Anime
@@ -133,7 +137,12 @@ class ScrapAnime extends Command
                 $cekFotoAnime= DB::table('anime')->where('foto','like','%'.$fotoVideoAnimeFileName)->first('foto');
                 $cekVideoAnime= DB::table('video')->where('foto','like','%'.$fotoVideoAnimeFileName)->first('foto');
                 if(!$cekFotoAnime OR !$cekVideoAnime){
-                    Storage::disk('scrap')->put(date('Y/m/d').'/'.$fotoVideoAnimeFileName, file_get_contents($fotoVideoAnime,false,$context));
+                    $reqFotoAnime = new CurlHelper($fotoVideoAnime, "GET");
+                    $reqFotoAnime->headers([
+                    "Accept"=>"application/json"
+                    ]);
+                    $reqFotoAnime->userAgent($UA);
+                    Storage::disk('scrap')->put(date('Y/m/d').'/'.$fotoVideoAnimeFileName, $reqFotoAnime->send());
                     $anime['foto']='storage/files/'.date('Y/m/d').'/'.$fotoVideoAnimeFileName;
                 }
                 else if($cekFotoAnime)
@@ -188,7 +197,7 @@ class ScrapAnime extends Command
                 $reqVideo->headers([
                     "Accept"=>"application/json"
                 ]);
-                $reqAnime->userAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36');
+                $reqAnime->userAgent($UA);
                 $responseVideo = $reqVideo->send();
                 
                 // Foto Movie Video Anime
@@ -199,7 +208,12 @@ class ScrapAnime extends Command
                 $cekFotoAnime= DB::table('anime')->where('foto','like','%'.$fotoVideoAnimeFileName)->first('foto');
                 $cekVideoAnime= DB::table('video')->where('foto','like','%'.$fotoVideoAnimeFileName)->first('foto');
                 if(!$cekFotoAnime OR !$cekVideoAnime){
-                    Storage::disk('scrap')->put(date('Y/m/d').'/'.$fotoVideoAnimeFileName, file_get_contents($fotoVideoAnime,false,$context));
+                    $reqFotoAnime = new CurlHelper($fotoVideoAnime, "GET");
+                    $reqFotoAnime->headers([
+                    "Accept"=>"application/json"
+                    ]);
+                    $reqFotoAnime->userAgent($UA);
+                    Storage::disk('scrap')->put(date('Y/m/d').'/'.$fotoVideoAnimeFileName, $reqFotoAnime->send());
                     $anime['foto']='storage/files/'.date('Y/m/d').'/'.$fotoVideoAnimeFileName;
                 }
                 else if($cekFotoAnime)
