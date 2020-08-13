@@ -3,7 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use crocodicstudio\crudbooster\helpers\CurlHelper;
+use ersaazis\cb\helpers\CurlHelper;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use KubAT\PhpSimple\HtmlDomParser;

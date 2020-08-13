@@ -3,7 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use crocodicstudio\crudbooster\helpers\CurlHelper;
+use ersaazis\cb\helpers\CurlHelper;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use KubAT\PhpSimple\HtmlDomParser;
@@ -243,6 +243,7 @@ class ScrapAnime extends Command
             try{
                 $this->scrap($item->url);
             } catch (\Throwable $e) {
+                report($e);
                 $this->warn("\n!!! [ Anime ] ".$item->url);
             }
         }
