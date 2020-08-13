@@ -27,6 +27,7 @@ class CbMenusTableSeeder extends Seeder
                 'sort_number' => 5,
                 'cb_modules_id' => 1,
                 'parent_cb_menus_id' => NULL,
+                'editable' => 1,
             ),
             1 => 
             array (
@@ -38,6 +39,7 @@ class CbMenusTableSeeder extends Seeder
                 'sort_number' => 3,
                 'cb_modules_id' => 3,
                 'parent_cb_menus_id' => NULL,
+                'editable' => 1,
             ),
             2 => 
             array (
@@ -49,6 +51,7 @@ class CbMenusTableSeeder extends Seeder
                 'sort_number' => 1,
                 'cb_modules_id' => 6,
                 'parent_cb_menus_id' => NULL,
+                'editable' => 1,
             ),
             3 => 
             array (
@@ -60,6 +63,7 @@ class CbMenusTableSeeder extends Seeder
                 'sort_number' => 6,
                 'cb_modules_id' => 7,
                 'parent_cb_menus_id' => NULL,
+                'editable' => 1,
             ),
             4 => 
             array (
@@ -71,6 +75,7 @@ class CbMenusTableSeeder extends Seeder
                 'sort_number' => 2,
                 'cb_modules_id' => 8,
                 'parent_cb_menus_id' => NULL,
+                'editable' => 1,
             ),
             5 => 
             array (
@@ -82,6 +87,7 @@ class CbMenusTableSeeder extends Seeder
                 'sort_number' => 0,
                 'cb_modules_id' => NULL,
                 'parent_cb_menus_id' => NULL,
+                'editable' => 1,
             ),
             6 => 
             array (
@@ -93,6 +99,19 @@ class CbMenusTableSeeder extends Seeder
                 'sort_number' => 0,
                 'cb_modules_id' => 10,
                 'parent_cb_menus_id' => NULL,
+                'editable' => 1,
+            ),
+            7 => 
+            array (
+                'id' => 12,
+                'name' => 'User Manajement',
+                'icon' => 'fa fa-users',
+                'path' => 'users',
+                'type' => 'path',
+                'sort_number' => 0,
+                'cb_modules_id' => NULL,
+                'parent_cb_menus_id' => NULL,
+                'editable' => 0,
             ),
         ));
         

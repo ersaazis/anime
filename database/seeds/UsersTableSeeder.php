@@ -24,14 +24,14 @@ class UsersTableSeeder extends Seeder
                 'email' => 'eam24maret@gmail.com',
                 'email_verified_at' => NULL,
                 'password' => '$2y$10$E2U1Wuz.iyzmVPW3UjMTPO5vZ7w4AIE5/RhV.2dPrLtIyn06j3YMG',
-                'remember_token' => NULL,
+                'remember_token' => 'Y8Xn5gOiovQaVxLjVaIhMr7wqEcPKTBxZaZrQZiHjqkdL3QItoAa7BoChMkZ',
                 'created_at' => NULL,
                 'updated_at' => NULL,
                 'photo' => NULL,
                 'cb_roles_id' => 1,
                 'ip_address' => '127.0.0.1',
-            'user_agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36',
-                'login_at' => '2020-01-27 13:50:32',
+            'user_agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36',
+                'login_at' => '2020-08-13 20:09:56',
             ),
         ));
         
