@@ -19,7 +19,7 @@ if(cb()->session()->roleId() == 1){
                     </div>
                 </div>
                 <div class="box-body">
-                    <iframe width="100%" height="371" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRTUksHZqcm2L9czJrJIgq5DxM2gNYCl4kbDbrLGZ_AkP2oTly1gZZUyOQJ_Ra1AmqotPyKnCmCApjG/pubchart?oid=1867331327&amp;format=interactive"></iframe>
+                    <img src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRTUksHZqcm2L9czJrJIgq5DxM2gNYCl4kbDbrLGZ_AkP2oTly1gZZUyOQJ_Ra1AmqotPyKnCmCApjG/pubchart?oid=1644222507&format=image" width="100%">
                 </div>
             </div>
         </div>
@@ -71,313 +71,317 @@ if(cb()->session()->roleId() == 1){
         </div>
     </div>
     <div class="row">
-        <div class="col-md-6">
-            <div class="box">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Report Video Terfavorit Bulan Ini</h3>
+        <div class="col-md-5">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Anime Update Hari Ini</h3>
 
-                    <div class="box-tools pull-right">
-                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                    </button>
-                    </div>
-                </div>
-                <div class="box-body">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <p class="text-center">
-                                <strong>Report : 1 {{date('M, Y')}} - {{date('t M, Y')}}</strong>
-                            </p>
-
-                            <div class="chart">
-                                <div id="chart_video" style="height: 300px; width: 100%;"></div>
+                            <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                            </button>
                             </div>
                         </div>
-                        <div class="col-md-12">
-                            <table class="table">
-                                @foreach ($labelReportVideo as $item)
-                                    <tr>
-                                        <td class="{{$color[$l]}}" width="25%">Video {{$l++}}</td>
-                                        <td>{{$item->judul_anime}} - {!! $item->judul !!}</td>
-                                    </tr>                                        
-                                @endforeach
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    @if ($videoRusak)
-    <div class="row">
-        <div class="col-md-12">
-            <div class="box">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Report Link Rusak</h3>
-
-                    <div class="box-tools pull-right">
-                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                    </button>
-                    </div>
-                </div>
-                <div class="box-body">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>No</th>
-                                        <th>Judul Video</th>
-                                        <th>Report</th>
-                                        <th>Aksi</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($dataVideoRusak as $item)
-                                    <tr>
-                                        <td>{{$i++}}</td>
-                                        <td>{{$item->judul_anime}} - {!! $item->judul !!}</td>
-                                        <td>{{$item->jum_report}}</td>
-                                        <td>
-                                            <a href="{{route('VideoAnime',['anime'=>$item->judul_alternatif_anime,'judul'=>$item->judul_alternatif])}}" class="btn btn-xs btn-primary" target="_blank">Lihat</a>
-                                            <a href="{{url(cb()->getAdminPath().'/video/edit/'.$item->id)}}" class="btn btn-xs btn-primary">Edit</a>
-                                        </td>
-                                    </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    @endif
-    <div class="row">
-        <div class="col-md-6">
-            <div class="box">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Anime Update Hari Ini</h3>
-
-                    <div class="box-tools pull-right">
-                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                    </button>
-                    </div>
-                </div>
-                <div class="box-body">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>No</th>
-                                        <th>Judul Anime</th>
-                                        <th>Hari Update</th>
-                                        <th>Aksi</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($dataAnimeUpdate as $item)
-                                    <tr>
-                                        <td>{{$j++}}</td>
-                                        <td>{!! $item->judul !!}</td>
-                                        <td>{{ucwords($item->hari_tayang)}}</td>
-                                        <td>
-                                            <a href="{{url(cb()->getAdminPath().'/video/add/')}}" class="btn btn-xs btn-primary">Tambah</a>
-                                        </td>
-                                    </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="box">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Anime Trending Hari Ini</h3>
-
-                    <div class="box-tools pull-right">
-                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                    </button>
-                    </div>
-                </div>
-                <div class="box-body">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>No</th>
-                                        <th>Judul Anime</th>
-                                        <th>Hari Update</th>
-                                        <th>Aksi</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($animeTrending as $item)
-                                    <tr>
-                                        <td>{{$o++}}</td>
-                                        <td>{!! $item->judul !!}</td>
-                                        <td>{{ucwords($item->hari_tayang)}}</td>
-                                        <td>
-                                            <a target="_blank" href="{{route('Anime',['anime'=>$item->judul_alternatif])}}" class="btn btn-xs btn-primary">Lihat</a>
-                                        </td>
-                                    </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="box collapsed-box">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Video Trending Hari Ini</h3>
-
-                    <div class="box-tools pull-right">
-                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
-                    </button>
-                    </div>
-                </div>
-                <div class="box-body">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>No</th>
-                                        <th>Judul Anime</th>
-                                        <th>Judul Video</th>
-                                        <th>Aksi</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($videoTrending as $item)
-                                    <tr>
-                                        <td>{{$p++}}</td>
-                                        <td>{{$item->judul_anime}}</td>
-                                        <td>{!! $item->judul !!}</td>
-                                        <td>
-                                            <a target="_blank" href="{{route('VideoAnime',['anime'=>$item->judul_alternatif_anime,'video'=>$item->judul_alternatif])}}" class="btn btn-xs btn-primary">Lihat</a>
-                                        </td>
-                                    </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="box">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Report Anime Terfavorit Bulan Ini</h3>
-
-                    <div class="box-tools pull-right">
-                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                    </button>
-                    </div>
-                </div>
-                <div class="box-body">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <p class="text-center">
-                                <strong>Report : 1 {{date('M, Y')}} - {{date('t M, Y')}}</strong>
-                            </p>
-
-                            <div class="chart">
-                                <div id="chart_anime" style="height: 300px; width: 100%;"></div>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <table class="table">
-                                @foreach ($labelReportAnime as $item)
-                                    <tr>
-                                        <td class="{{$color[$k]}}" width="25%">Anime {{$k++}}</td>
-                                        <td>{!! $item->judul !!}</td>
-                                    </tr>                                        
-                                @endforeach
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6">
-            <div class="box">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Report Video Terfavorit Bulan Ini</h3>
-
-                    <div class="box-tools pull-right">
-                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                    </button>
-                    </div>
-                </div>
-                <div class="box-body">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <p class="text-center">
-                                <strong>Report : 1 {{date('M, Y')}} - {{date('t M, Y')}}</strong>
-                            </p>
-
-                            <div class="chart">
-                                <div id="chart_video" style="height: 300px; width: 100%;"></div>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <table class="table">
-                                @foreach ($labelReportVideo as $item)
-                                    <tr>
-                                        <td class="{{$color[$l]}}" width="25%">Video {{$l++}}</td>
-                                        <td>{{$item->judul_anime}} - {!! $item->judul !!}</td>
-                                    </tr>                                        
-                                @endforeach
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6">
-                <div class="box">
-                    <div class="box-header with-border">
-                        <h3 class="box-title">Report Genre Terfavorit Bulan Ini</h3>
-    
-                        <div class="box-tools pull-right">
-                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                        </button>
-                        </div>
-                    </div>
-                    <div class="box-body">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <p class="text-center">
-                                    <strong>Report : 1 {{date('M, Y')}} - {{date('t M, Y')}}</strong>
-                                </p>
-    
-                                <div class="chart">
-                                    <div id="chart_genre" style="height: 300px; width: 100%;"></div>
+                        <div class="box-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Judul Anime</th>
+                                                <th>Hari Update</th>
+                                                <th>Aksi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($dataAnimeUpdate as $item)
+                                            <tr>
+                                                <td>{{$j++}}</td>
+                                                <td>{!! $item->judul !!}</td>
+                                                <td>{{ucwords($item->hari_tayang)}}</td>
+                                                <td>
+                                                    <a href="{{url(cb()->getAdminPath().'/video/add/')}}" class="btn btn-xs btn-primary">Tambah</a>
+                                                </td>
+                                            </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
-                            <div class="col-md-12">
-                                <table class="table">
-                                @foreach ($labelReportGenre as $item)
-                                    <tr>
-                                        <td class="{{$color[$m]}}" width="25%">Genre {{$m++}}</td>
-                                        <td>{{$item->nama}}</td>
-                                    </tr>                                        
-                                @endforeach
-                                </table>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Anime Trending Hari Ini</h3>
+
+                            <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                            </button>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Judul Anime</th>
+                                                <th>Hari Update</th>
+                                                <th>Aksi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($animeTrending as $item)
+                                            <tr>
+                                                <td>{{$o++}}</td>
+                                                <td>{!! $item->judul !!}</td>
+                                                <td>{{ucwords($item->hari_tayang)}}</td>
+                                                <td>
+                                                    <a target="_blank" href="{{route('Anime',['anime'=>$item->judul_alternatif])}}" class="btn btn-xs btn-primary">Lihat</a>
+                                                </td>
+                                            </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Video Trending Hari Ini</h3>
+
+                            <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                            </button>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Judul Anime</th>
+                                                <th>Judul Video</th>
+                                                <th>Aksi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($videoTrending as $item)
+                                            <tr>
+                                                <td>{{$p++}}</td>
+                                                <td>{{$item->judul_anime}}</td>
+                                                <td>{!! $item->judul !!}</td>
+                                                <td>
+                                                    <a target="_blank" href="{{route('VideoAnime',['anime'=>$item->judul_alternatif_anime,'video'=>$item->judul_alternatif])}}" class="btn btn-xs btn-primary">Lihat</a>
+                                                </td>
+                                            </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                @if ($videoRusak)
+                <div class="col-md-12">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Report Link Video Rusak</h3>
+
+                            <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                            </button>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <table class="table">
+                            <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Judul Video</th>
+                                <th>Report</th>
+                                <th>Aksi</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach ($dataVideoRusak as $item)
+                            <tr>
+                                <td>{{$i++}}</td>
+                                <td>{{$item->judul_anime}} - {!! $item->judul !!}</td>
+                                <td>{{$item->jum_report}}</td>
+                                <td>
+                                    <a href="{{route('VideoAnime',['anime'=>$item->judul_alternatif_anime,'judul'=>$item->judul_alternatif])}}" class="btn btn-xs btn-primary" target="_blank">Lihat</a>
+                                    <a href="{{url(cb()->getAdminPath().'/video/edit/'.$item->id)}}" class="btn btn-xs btn-primary">Edit</a>
+                                </td>
+                            </tr>
+                            @endforeach
+                            </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                 @endif                                 
             </div>
         </div>
+        <div class="col-md-7">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Report Video Terfavorit Bulan Ini</h3>
+
+                            <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                            </button>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p class="text-center">
+                                        <strong>Report : 1 {{date('M, Y')}} - {{date('t M, Y')}}</strong>
+                                    </p>
+
+                                    <div class="chart">
+                                        <div id="chart_video" style="height: 300px; width: 100%;"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <table class="table">
+                                        @php
+                                        $l=1;                                    
+                                        @endphp
+                                        @foreach ($labelReportVideo as $item)
+                                            <tr>
+                                                <td class="{{$color[$l]}}" width="25%">Video {{$l++}}</td>
+                                                <td>{{$item->judul_anime}} - {!! $item->judul !!}</td>
+                                            </tr>                                        
+                                        @endforeach
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Report Anime Terfavorit Bulan Ini</h3>
+
+                            <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                            </button>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p class="text-center">
+                                        <strong>Report : 1 {{date('M, Y')}} - {{date('t M, Y')}}</strong>
+                                    </p>
+
+                                    <div class="chart">
+                                        <div id="chart_anime" style="height: 300px; width: 100%;"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <table class="table">
+                                        @foreach ($labelReportAnime as $item)
+                                            <tr>
+                                                <td class="{{$color[$k]}}" width="25%">Anime {{$k++}}</td>
+                                                <td>{!! $item->judul !!}</td>
+                                            </tr>                                        
+                                        @endforeach
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Report Video Terfavorit Bulan Ini</h3>
+
+                            <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                            </button>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p class="text-center">
+                                        <strong>Report : 1 {{date('M, Y')}} - {{date('t M, Y')}}</strong>
+                                    </p>
+
+                                    <div class="chart">
+                                        <div id="chart_video" style="height: 300px; width: 100%;"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <table class="table">
+                                        @php
+                                        $l=1;
+                                        @endphp
+                                        @foreach ($labelReportVideo as $item)
+                                            <tr>
+                                                <td class="{{$color[$l]}}" width="25%">Video {{$l++}}</td>
+                                                <td>{{$item->judul_anime}} - {!! $item->judul !!}</td>
+                                            </tr>                                        
+                                        @endforeach
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Report Genre Terfavorit Bulan Ini</h3>
+
+                            <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                            </button>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p class="text-center">
+                                        <strong>Report : 1 {{date('M, Y')}} - {{date('t M, Y')}}</strong>
+                                    </p>
+
+                                    <div class="chart">
+                                        <div id="chart_genre" style="height: 300px; width: 100%;"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <table class="table">
+                                    @foreach ($labelReportGenre as $item)
+                                        <tr>
+                                            <td class="{{$color[$m]}}" width="25%">Genre {{$m++}}</td>
+                                            <td>{{$item->nama}}</td>
+                                        </tr>                                        
+                                    @endforeach
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
     @else
         <div class="callout callout-success">
             <h4>Selamat datang {{cb()->session()->name()}}</h4>
