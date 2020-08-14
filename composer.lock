@@ -4,8 +4,52 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "af719e03278852d715a23d0bb815ebac",
+    "content-hash": "cd9f68d68b680b8e8f683c4a9564badd",
     "packages": [
+        {
+            "name": "crocodicstudio/cbmodel",
+            "version": "v1.19",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/crocodic-studio/cb-model.git",
+                "reference": "fc437ac527dd911cab7dab5d5243f309059f9da5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/crocodic-studio/cb-model/zipball/fc437ac527dd911cab7dab5d5243f309059f9da5",
+                "reference": "fc437ac527dd911cab7dab5d5243f309059f9da5",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "6.*|5.7.*|5.8.*",
+                "php": ">=7.2"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Crocodicstudio\\Cbmodel\\CBModelServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Crocodicstudio\\Cbmodel": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ferry Ariawan",
+                    "email": "ferry@crocodic.com"
+                }
+            ],
+            "description": "Boost your laravel database relation",
+            "time": "2019-10-08T11:59:09+00:00"
+        },
         {
             "name": "dnoegel/php-xdg-base-dir",
             "version": "v0.1.1",
