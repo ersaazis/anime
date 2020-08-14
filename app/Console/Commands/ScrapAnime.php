@@ -80,8 +80,8 @@ class ScrapAnime extends Command
                 "Accept"=>"application/json"
                 ]);
                 $reqFotoAnime->userAgent($UA);
-                Storage::disk('scrap')->put(date('Y/m/d').'/'.$fotoAnimeFileName, $reqFotoAnime->send());
-                $anime['foto']='storage/files/'.date('Y/m/d').'/'.$fotoAnimeFileName;
+                Storage::disk('scrap')->put('/'.$fotoAnimeFileName, $reqFotoAnime->send());
+                $anime['foto']='storage/files/'.'/'.$fotoAnimeFileName;
             }
             else if($cekFotoAnime)
                 $anime['foto']=$cekFotoAnime->foto;
@@ -142,8 +142,8 @@ class ScrapAnime extends Command
                     "Accept"=>"application/json"
                     ]);
                     $reqFotoAnime->userAgent($UA);
-                    Storage::disk('scrap')->put(date('Y/m/d').'/'.$fotoVideoAnimeFileName, $reqFotoAnime->send());
-                    $anime['foto']='storage/files/'.date('Y/m/d').'/'.$fotoVideoAnimeFileName;
+                    Storage::disk('scrap')->put('/'.$fotoVideoAnimeFileName, $reqFotoAnime->send());
+                    $anime['foto']='storage/files/'.'/'.$fotoVideoAnimeFileName;
                 }
                 else if($cekFotoAnime)
                     $anime['foto']=$cekFotoAnime->foto;
@@ -160,7 +160,7 @@ class ScrapAnime extends Command
                 $videoAnime['tipe']='episode';
                 $videoAnime['episode']=$episode--;
                 $videoAnime['id_anime']=$id_anime;
-                $videoAnime['foto']='storage/files/'.date('Y/m/d').'/'.$fotoVideoAnimeFileName;
+                $videoAnime['foto']='storage/files/'.'/'.$fotoVideoAnimeFileName;
                 $videoAnime['deskripsi']=$deskripsiVideoAnime;
                 // Server Episode Video Anime
                 $i=1;
@@ -213,8 +213,8 @@ class ScrapAnime extends Command
                     "Accept"=>"application/json"
                     ]);
                     $reqFotoAnime->userAgent($UA);
-                    Storage::disk('scrap')->put(date('Y/m/d').'/'.$fotoVideoAnimeFileName, $reqFotoAnime->send());
-                    $anime['foto']='storage/files/'.date('Y/m/d').'/'.$fotoVideoAnimeFileName;
+                    Storage::disk('scrap')->put('/'.$fotoVideoAnimeFileName, $reqFotoAnime->send());
+                    $anime['foto']='storage/files/'.'/'.$fotoVideoAnimeFileName;
                 }
                 else if($cekFotoAnime)
                     $anime['foto']=$cekFotoAnime->foto;
@@ -231,7 +231,7 @@ class ScrapAnime extends Command
                 $videoAnime['tipe']='movie';
                 $videoAnime['episode']=$episode--;
                 $videoAnime['id_anime']=$id_anime;
-                $videoAnime['foto']='storage/files/'.date('Y/m/d').'/'.$fotoVideoAnimeFileName;
+                $videoAnime['foto']='storage/files/'.'/'.$fotoVideoAnimeFileName;
                 $videoAnime['deskripsi']=$deskripsiVideoAnime;
                 // Server Movie Video Anime
                 $i=1;
