@@ -8,6 +8,23 @@ if(cb()->session()->roleId() == 1){
 @section('content')
     @if (cb()->session()->roleId() == 1)
     <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Trafik Website</h3>
+
+                    <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                    </button>
+                    </div>
+                </div>
+                <div class="box-body">
+                    <iframe width="100%" height="371" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRTUksHZqcm2L9czJrJIgq5DxM2gNYCl4kbDbrLGZ_AkP2oTly1gZZUyOQJ_Ra1AmqotPyKnCmCApjG/pubchart?oid=1867331327&amp;format=interactive"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-md-3 col-sm-6 col-xs-12">
             <div class="info-box">
                 <span class="info-box-icon bg-aqua-active"><i class="fa fa-users"></i></span>
@@ -89,21 +106,8 @@ if(cb()->session()->roleId() == 1){
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
-            <div class="box">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Traffic</h3>
+    </div>
 
-                    <div class="box-tools pull-right">
-                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                    </button>
-                    </div>
-                </div>
-                <div class="box-body">
-                    <iframe width="600" height="371" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRTUksHZqcm2L9czJrJIgq5DxM2gNYCl4kbDbrLGZ_AkP2oTly1gZZUyOQJ_Ra1AmqotPyKnCmCApjG/pubchart?oid=1867331327&amp;format=interactive"></iframe>
-                </div>
-            </div>
-        </div>
     @if ($videoRusak)
     <div class="row">
         <div class="col-md-12">

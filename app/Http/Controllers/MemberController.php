@@ -172,6 +172,7 @@ class MemberController extends Controller
             3=>'bg-yellow-active',
             4=>'bg-red-active',
             5=>'bg-blue-active',
+            6=>'bg-blue-active',
         ];
         return view("dashboard", $data);
     }
