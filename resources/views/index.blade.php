@@ -34,7 +34,7 @@
                     href="javascript:void(0);"
                 >
                 @if (!session('lite_mode',false))
-                <img style="width:100%;height:200px" src="{{url($item->foto)}}" class="img-fluid position-relative mx-auto"/>
+                <img style="width:100%;height:250px" src="{{url($item->foto)}}" class="img-fluid position-relative mx-auto"/>
                 <h3 class="w-75 position-absolute text-dark bg-white p-1" style="font-size:50%;font-weight:700;top:5%">{!! $item->judul_anime !!}</h3>
                 <h3 class="w-75 position-absolute text-white bg-info p-1" style="font-size:50%;font-weight:700;bottom:0%">{!! $item->judul !!}</h3>
                 <h3 class="w-30 position-absolute text-white bg-danger p-1" style="font-size:50%;font-weight:700;bottom:10%">{!! $item->status !!}</h3>
@@ -81,7 +81,7 @@
                     href="javascript:void(0);"
                 >
                 @if (!session('lite_mode',false))
-                <img style="width:100%;height:200px" src="{{url($item->foto)}}" class="img-fluid position-relative mx-auto"/>
+                <img style="width:100%;height:250px" src="{{url($item->foto)}}" class="img-fluid position-relative mx-auto"/>
                 <h3 class="w-75 position-absolute text-dark bg-white p-1" style="font-size:50%;font-weight:700;top:5%">{!! $item->judul !!}</h3>
                 <h3 class="w-30 position-absolute text-white bg-danger p-1" style="font-size:50%;font-weight:700;bottom:10%">{!! $item->status !!}</h3>
                 @else
@@ -127,7 +127,7 @@
                     href="javascript:void(0);"
                 >
                 @if (!session('lite_mode',false))
-                <img style="width:100%;height:200px" src="{{url($item->foto)}}" class="img-fluid position-relative mx-auto"/>
+                <img style="width:100%;height:250px" src="{{url($item->foto)}}" class="img-fluid position-relative mx-auto"/>
                 <h3 class="w-75 position-absolute text-dark bg-white p-1" style="font-size:50%;font-weight:700;top:5%">{!! $item->judul_anime !!}</h3>
                 <h3 class="w-75 position-absolute text-white bg-info p-1" style="font-size:50%;font-weight:700;bottom:0%">{!! $item->judul !!}</h3>
                 <h3 class="w-30 position-absolute text-white bg-danger p-1" style="font-size:50%;font-weight:700;bottom:10%">{!! $item->status !!}</h3>
@@ -181,7 +181,7 @@
                         href="javascript:void(0);"
                     >
                     @if (!session('lite_mode',false))
-                    <img style="width:100%;height:200px" src="{{url($item->foto)}}" class="img-fluid position-relative mx-auto"/>
+                    <img style="width:100%;height:250px" src="{{url($item->foto)}}" class="img-fluid position-relative mx-auto"/>
                     <h3 class="w-75 position-absolute text-dark bg-white p-1" style="font-size:50%;font-weight:700;top:5%">{!! $item->judul_anime !!}</h3>
                     <h3 class="w-75 position-absolute text-white bg-info p-1" style="font-size:50%;font-weight:700;bottom:0%">{!! $item->judul !!}</h3>
                     <h3 class="w-30 position-absolute text-white bg-danger p-1" style="font-size:50%;font-weight:700;bottom:10%">{!! $item->status !!}</h3>
@@ -236,7 +236,7 @@
                         href="javascript:void(0);"
                     >
                     @if (!session('lite_mode',false))
-                    <img style="width:100%;height:200px" src="{{url($item->foto)}}" class="img-fluid position-relative mx-auto"/>
+                    <img style="width:100%;height:250px" src="{{url($item->foto)}}" class="img-fluid position-relative mx-auto"/>
                     <h3 class="w-75 position-absolute text-dark bg-white p-1" style="font-size:50%;font-weight:700;top:5%">{!! $item->judul !!}</h3>
                     <h3 class="w-30 position-absolute text-white bg-danger p-1" style="font-size:50%;font-weight:700;bottom:10%">{!! $item->status !!}</h3>
                     @else
