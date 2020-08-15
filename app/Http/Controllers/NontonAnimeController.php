@@ -123,7 +123,7 @@ class NontonAnimeController extends Controller
     }
     public function anime($anime){
         $anime=DB::table('anime')->where('judul_alternatif',$anime)->first();
-        $video['episode']=DB::table('video')->where('tipe','episode')->where('id_anime',$anime->id)->orderBy('episode')->get();
+        $video['episode']=DB::table('video')->where('tipe','episode')->where('id_anime',$anime->id)->orderBy('episode','desc')->get();
         $video['movie']=DB::table('video')->where('tipe','movie')->where('id_anime',$anime->id)->get();
         $karakterAnime=DB::table('karakter_anime')
             ->join('karakter','karakter_anime.id_karakter','=','karakter.id')
