@@ -74,7 +74,7 @@
                         >
                         @if (!session('lite_mode',false))
                         <img src="{{url($item->foto)}}" class="img-fluid position-relative mx-auto"/>
-                <h3 class="w-75 position-absolute text-dark bg-white p-1" style="font-size:50%;font-weight:700;top:5%">{!! $item->nama !!}</h3>
+                        <h3 class="w-75 position-absolute text-dark bg-white p-1" style="font-size:50%;font-weight:700;top:5%">{!! $item->nama !!}</h3>
                         @else
                         <div class="card h-100">
                             <div class="card-body text-center text-dark">
