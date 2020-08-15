@@ -19,7 +19,7 @@ if(cb()->session()->roleId() == 1){
                     </div>
                 </div>
                 <div class="box-body">
-                    <img src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRTUksHZqcm2L9czJrJIgq5DxM2gNYCl4kbDbrLGZ_AkP2oTly1gZZUyOQJ_Ra1AmqotPyKnCmCApjG/pubchart?oid=1644222507&format=image" width="100%">
+                    <img style="width:100%;height:200px" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRTUksHZqcm2L9czJrJIgq5DxM2gNYCl4kbDbrLGZ_AkP2oTly1gZZUyOQJ_Ra1AmqotPyKnCmCApjG/pubchart?oid=1644222507&format=image" width="100%">
                 </div>
             </div>
         </div>

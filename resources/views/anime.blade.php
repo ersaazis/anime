@@ -9,7 +9,7 @@
                 <div class="row">
                     @if (!session('lite_mode',false))
                     <div class="col-12 col-md-3">
-                        <img src="{{url($anime->foto)}}" width="100%" />
+                        <img style="width:100%;height:200px" src="{{url($anime->foto)}}" width="100%" />
                     </div>
                     @endif
                     <div class="col-12 col-md-9 mt-2">
@@ -72,7 +72,7 @@
                         href="javascript:void(0);"
                         >
                         @if (!session('lite_mode',false))
-                        <img src="{{url($item->foto)}}" class="img-fluid position-relative mx-auto"/>
+                        <img style="width:100%;height:200px" src="{{url($item->foto)}}" class="img-fluid position-relative mx-auto"/>
                 <h3 class="w-75 position-absolute text-dark bg-white p-1" style="font-size:50%;font-weight:700;top:5%">{!! $item->nama !!}</h3>
                         @else
                         <div class="card h-100">
