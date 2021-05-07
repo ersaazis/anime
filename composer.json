@@ -13,7 +13,7 @@
         "ersaazis/usermanagement": "dev-master",
         "fideloper/proxy": "^4.0",
         "kub-at/php-simple-html-dom-parser": "^1.9",
-        "laravel/framework": "5.8.*",
+        "laravel/framework": "6.18.*",
         "laravel/tinker": "^1.0",
         "orangehill/iseed": "^2.6"
     },
